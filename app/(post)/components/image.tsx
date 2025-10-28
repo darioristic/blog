@@ -38,13 +38,15 @@ export async function Image({
           const arrayBuffer = await response.arrayBuffer();
           imageBuffer = Buffer.from(arrayBuffer);
         } else {
-          imageBuffer = await readFile(
-            new URL(
-              join(import.meta.url, "..", "..", "..", "..", "public", src)
-            ).pathname
-          );
+          const publicPath = join(process.cwd(), "public", src);
+          imageBuffer = await readFile(publicPath);
         }
       }
+      
+      if (!imageBuffer) {
+        throw new Error(`Could not load image from ${src}`);
+      }
+      
       const computedSize = sizeOf(imageBuffer);
       if (
         computedSize.width === undefined ||
@@ -86,3 +88,4 @@ export async function Image({
     );
   }
 }
+
