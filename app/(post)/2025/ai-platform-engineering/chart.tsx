@@ -44,53 +44,30 @@ const data = [
 const CustomLegend = (props: any) => {
   const { payload, isDark } = props;
 
+  // Recharts reverses the order, so we need to display them in chronological order
+  const chronologicalOrder = [
+    { key: "infrastructure", label: "Infrastructure Abstractions", icon: "⚙️", year: "2000" },
+    { key: "virtual", label: "Virtualization", icon: "💻", year: "2005" },
+    { key: "cloud", label: "Cloud Computing", icon: "☁️", year: "2010" },
+    { key: "orchestration", label: "Container Orchestration", icon: "📦", year: "2015" },
+    { key: "ai", label: "AI Platform Engineering", icon: "🤖", year: "2022" },
+  ];
+
   return (
     <div className="flex flex-wrap justify-center gap-x-7 gap-y-3 mt-6">
-      {payload.map((entry: any, index: number) => {
-        const getIcon = (value: string) => {
-          switch (value) {
-            case "infrastructure":
-              return "⚙️";
-            case "virtual":
-              return "💻";
-            case "cloud":
-              return "☁️";
-            case "orchestration":
-              return "📦";
-            case "ai":
-              return "🤖";
-            default:
-              return "•";
-          }
-        };
-
-        const getLabel = (value: string) => {
-          switch (value) {
-            case "infrastructure":
-              return "Infrastructure Abstractions";
-            case "virtual":
-              return "Virtualization";
-            case "cloud":
-              return "Cloud Computing";
-            case "orchestration":
-              return "Container Orchestration";
-            case "ai":
-              return "AI Platform Engineering";
-            default:
-              return value;
-          }
-        };
+      {chronologicalOrder.map((item, index: number) => {
+        const entry = payload.find((p: any) => p.value === item.key) || payload[index];
 
         return (
           <div key={`legend-${index}`} className="flex items-center gap-2">
-            <span>{getIcon(entry.value)}</span>
+            <span>{item.icon}</span>
             <span
               className={`font-mono text-xs whitespace-nowrap`}
               style={{
-                color: entry.color || undefined,
+                color: entry?.color || undefined,
               }}
             >
-              {getLabel(entry.value)}
+              {item.label}
             </span>
           </div>
         );
