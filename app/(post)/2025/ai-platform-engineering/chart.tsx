@@ -14,19 +14,23 @@ import {
 import { A } from "../../components/a";
 
 const data = [
-  // 2000-2010: Infrastructure abstractions era - foundational layer grows gradually
-  { year: "2000", infrastructure: 15, virtual: 5, cloud: 0, orchestration: 0, ai: 0 },
-  { year: "2003", infrastructure: 30, virtual: 15, cloud: 3, orchestration: 0, ai: 0 },
-  { year: "2006", infrastructure: 45, virtual: 40, cloud: 8, orchestration: 0, ai: 0 },
-  { year: "2010", infrastructure: 55, virtual: 55, cloud: 25, orchestration: 0, ai: 0 },
+  // 1990-2000: Bare metal era - physical servers, no abstraction layers yet
+  { year: "1990", infrastructure: 3, virtual: 0, cloud: 0, orchestration: 0, ai: 0 },
+  { year: "1995", infrastructure: 8, virtual: 0, cloud: 0, orchestration: 0, ai: 0 },
+  
+  // 2000-2010: Infrastructure abstractions era begins
+  { year: "2000", infrastructure: 15, virtual: 3, cloud: 0, orchestration: 0, ai: 0 },
+  { year: "2003", infrastructure: 30, virtual: 12, cloud: 2, orchestration: 0, ai: 0 },
+  { year: "2006", infrastructure: 45, virtual: 35, cloud: 8, orchestration: 0, ai: 0 },
+  { year: "2010", infrastructure: 55, virtual: 50, cloud: 25, orchestration: 0, ai: 0 },
   
   // 2010-2015: Cloud computing adoption accelerates
-  { year: "2012", infrastructure: 50, virtual: 58, cloud: 45, orchestration: 5, ai: 0 },
-  { year: "2015", infrastructure: 48, virtual: 60, cloud: 62, orchestration: 25, ai: 0 },
+  { year: "2012", infrastructure: 50, virtual: 55, cloud: 45, orchestration: 5, ai: 0 },
+  { year: "2015", infrastructure: 48, virtual: 58, cloud: 62, orchestration: 25, ai: 0 },
   
   // 2015-2020: Container orchestration becomes mainstream
-  { year: "2017", infrastructure: 45, virtual: 58, cloud: 68, orchestration: 48, ai: 0 },
-  { year: "2020", infrastructure: 42, virtual: 55, cloud: 72, orchestration: 65, ai: 0 },
+  { year: "2017", infrastructure: 45, virtual: 56, cloud: 68, orchestration: 48, ai: 0 },
+  { year: "2020", infrastructure: 42, virtual: 54, cloud: 72, orchestration: 65, ai: 0 },
   
   // 2020-2025: AI Platform Engineering begins
   { year: "2022", infrastructure: 40, virtual: 52, cloud: 70, orchestration: 68, ai: 8 },
