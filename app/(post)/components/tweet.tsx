@@ -30,7 +30,7 @@ async function getAndCacheTweet(id: string): Promise<TweetType | undefined> {
     console.error("tweet fetch error", error);
   }
 
-  const cachedTweet: TweetType | null = await redis.get(`tweet:${id}`);
+  const cachedTweet = await redis.get(`tweet:${id}`) as TweetType | null;
 
   // @ts-ignore
   if (!cachedTweet || cachedTweet.tombstone) return undefined;
