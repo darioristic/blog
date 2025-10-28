@@ -76,13 +76,13 @@ The key is starting simple and evolving to microservices as needed. Don't over-e
 
 You can run containers manually, but that defeats the purpose. The real power comes from orchestration—automated management of your containerized applications at scale.
 
-Kubernetes has become the de facto standard for orchestration. It handles the hard problems: which servers run which containers, how to distribute load, how to restart failed services, how to roll out updates without downtime. What would take hours of manual configuration, Kubernetes does in seconds.
+[Kubernetes](https://kubernetes.io/) has become the de facto standard for orchestration. It handles the hard problems: which servers run which containers, how to distribute load, how to restart failed services, how to roll out updates without downtime. What would take hours of manual configuration, Kubernetes does in seconds.
 
 The automation aspect here is what drives digital transformation. Manual infrastructure management doesn't scale. You can't have IT teams manually adjusting resources to match demand fluctuations. Automation allows infrastructure to be responsive—scaling up for Black Friday traffic, scaling down during off-peak hours.
 
 From my experience, organizations struggle with orchestration initially because it requires new skills and new mental models. But once teams adopt it, the velocity improvement is dramatic. Deployments that took days become minutes. Infrastructure provisioning that took weeks becomes seconds.
 
-**Practical insight**: Start with managed Kubernetes services (GKE, EKS, AKS) rather than self-hosting. Let cloud providers handle the complexity while your team focuses on applications.
+**Practical insight**: Start with managed Kubernetes services ([GKE](https://cloud.google.com/kubernetes-engine), [EKS](https://aws.amazon.com/eks/), [AKS](https://azure.microsoft.com/services/kubernetes-service/)) rather than self-hosting. Let cloud providers handle the complexity while your team focuses on applications.
 
 ### 4. DevOps and CI/CD
 
@@ -180,9 +180,9 @@ Case studies help ground theory in reality. Here are organizations that transfor
 
 ### Netflix: From Monolith to Cloud-Native
 
-Netflix is perhaps the most cited cloud-native success story—and for good reason. They transformed from a DVD rental company with a small web presence to a global streaming service that fundamentally changed entertainment.
+[Netflix](https://www.netflix.com/) is perhaps the most cited cloud-native success story—and for good reason. They transformed from a DVD rental company with a small web presence to a global streaming service that fundamentally changed entertainment.
 
-**The transformation**: Netflix migrated from a monolithic application running on their own data centers to a microservices architecture on AWS. This wasn't just a lift-and-shift—they redesigned everything to be cloud-native from the ground up.
+**The transformation**: Netflix migrated from a monolithic application running on their own data centers to a microservices architecture on [AWS](https://aws.amazon.com/). This wasn't just a lift-and-shift—they redesigned everything to be cloud-native from the ground up.
 
 **The results**: Netflix now streams to 230+ million subscribers simultaneously. They deploy thousands of times per day. They handle traffic spikes automatically (imagine everyone watching a popular new series on Friday night). Most importantly, they innovate rapidly—A/B testing new features constantly, responding to viewer data, iterating on personalization algorithms.
 
@@ -190,7 +190,7 @@ Netflix is perhaps the most cited cloud-native success story—and for good reas
 
 ### Airbnb: Scaling During Disruption
 
-Airbnb represents cloud-native done for extreme scale and resilience. They manage millions of listings, handle complex booking logistics, process payments globally—all while scaling for peak travel seasons.
+[Airbnb](https://www.airbnb.com/) represents cloud-native done for extreme scale and resilience. They manage millions of listings, handle complex booking logistics, process payments globally—all while scaling for peak travel seasons.
 
 **The architecture**: Airbnb runs on microservices with heavy use of containerization. Each service (search, payments, messaging, host tools) operates independently. This allows different teams to move at their own pace and deploy frequently.
 
@@ -200,7 +200,7 @@ Airbnb represents cloud-native done for extreme scale and resilience. They manag
 
 ### Capital One: Digital Banking Transformation
 
-Capital One proves cloud-native works even in heavily regulated industries. As a financial institution, they face strict compliance requirements, security constraints, and consumer trust obligations. Yet they embraced cloud-native.
+[Capital One](https://www.capitalone.com/) proves cloud-native works even in heavily regulated industries. As a financial institution, they face strict compliance requirements, security constraints, and consumer trust obligations. Yet they embraced cloud-native.
 
 **The shift**: Capital One moved from traditional on-premises infrastructure to cloud-native on AWS. They adopted DevOps practices, implemented CI/CD pipelines, embraced infrastructure as code. Perhaps most impressively, they did this while maintaining (actually improving) security and compliance.
 
