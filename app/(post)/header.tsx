@@ -86,7 +86,6 @@ function Views({
   const didLogViewRef = useRef(false);
 
   useEffect(() => {
-    if ("development" === process.env.NODE_ENV) return;
     if (!didLogViewRef.current) {
       const url = "/api/view?incr=1&id=" + encodeURIComponent(id);
       fetch(url)
@@ -98,7 +97,7 @@ function Views({
         .catch(console.error);
       didLogViewRef.current = true;
     }
-  });
+  }, [id, mutate]);
 
   return <>{views != null ? <span>{views} views</span> : null}</>;
 }
