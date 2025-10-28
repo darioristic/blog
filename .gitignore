@@ -11,3 +11,4 @@ TODO
 fonts/*
 !fonts/init.mjs
 .DS_Store
+bun.lock
