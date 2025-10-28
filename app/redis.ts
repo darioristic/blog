@@ -36,6 +36,7 @@ if (!process.env.UPSTASH_REDIS_REST_TOKEN) {
   const upstashUrl = process.env.UPSTASH_REDIS_REST_URL || "https://global-apt-bear-30602.upstash.io";
   redis = new Redis({
     url: upstashUrl,
+    // biome-ignore lint/style/noNonNullAssertion: UPSTASH_REDIS_REST_TOKEN is checked above on line 17, so it's guaranteed to exist here
     token: process.env.UPSTASH_REDIS_REST_TOKEN!,
   });
 }
