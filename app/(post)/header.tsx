@@ -83,21 +83,24 @@ function Views({
   defaultValue: string | null; 
 }) {
   const [views, setViews] = useState(defaultValue);
-  const didLogViewRef = useRef(false);
+  const didIncrementViewRef = useRef(false);
+  const sessionKey = `viewed_${id}`;
 
   useEffect(() => {
-    if (!didLogViewRef.current) {
+    // Only increment once per session
+    if (!didIncrementViewRef.current && !sessionStorage.getItem(sessionKey)) {
       const url = "/api/view?incr=1&id=" + encodeURIComponent(id);
       fetch(url)
         .then(res => res.json())
         .then(obj => {
           setViews(obj.viewsFormatted);
           mutate(obj);
+          sessionStorage.setItem(sessionKey, 'true');
         })
         .catch(console.error);
-      didLogViewRef.current = true;
+      didIncrementViewRef.current = true;
     }
-  }, [id, mutate]);
+  }, [id, mutate, sessionKey]);
 
   return <>{views != null ? <span>{views} views</span> : null}</>;
 }

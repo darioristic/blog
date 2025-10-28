@@ -11,13 +11,17 @@ type MockRedis = {
 
 // Mock Redis for local development when token is not set
 let redis: Redis | MockRedis;
+const mockViews: Record<string, number> = {};
 
 if (!process.env.UPSTASH_REDIS_REST_TOKEN) {
   console.warn("UPSTASH_REDIS_REST_TOKEN is not defined - using mock Redis for local development");
   redis = {
-    hgetall: async () => ({}),
-    hget: async () => "0",
-    hincrby: async () => 1,
+    hgetall: async () => mockViews,
+    hget: async (key: string, field: string) => String(mockViews[field] ?? 0),
+    hincrby: async (key: string, field: string, increment: number) => {
+      mockViews[field] = (mockViews[field] ?? 0) + increment;
+      return mockViews[field];
+    },
     get: async () => null,
     set: async () => "OK"
   };
