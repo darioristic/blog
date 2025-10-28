@@ -34,10 +34,10 @@ const data = [
   { year: "2021", infrastructure: 41, virtual: 53, cloud: 71, orchestration: 67, ai: null },
   
   // 2022-2025: AI Platform Engineering begins
-  { year: "2022", infrastructure: 40, virtual: 52, cloud: 70, orchestration: 68, ai: 8 },
-  { year: "2023", infrastructure: 38, virtual: 50, cloud: 68, orchestration: 66, ai: 25 },
-  { year: "2024", infrastructure: 37, virtual: 49, cloud: 67, orchestration: 64, ai: 42 },
-  { year: "2025", infrastructure: 36, virtual: 48, cloud: 66, orchestration: 63, ai: 55 },
+  { year: "2022", infrastructure: 40, virtual: 52, cloud: 70, orchestration: 68, ai: 3 },
+  { year: "2023", infrastructure: 38, virtual: 50, cloud: 68, orchestration: 66, ai: 22 },
+  { year: "2024", infrastructure: 37, virtual: 49, cloud: 67, orchestration: 64, ai: 40 },
+  { year: "2025", infrastructure: 36, virtual: 48, cloud: 66, orchestration: 63, ai: 52 },
 ];
 
 const CustomLegend = (props: any) => {
@@ -181,11 +181,10 @@ export function Chart() {
               dataKey="ai"
               stroke="#f59e0b"
               strokeWidth={2}
-              dot={false}
+              dot={{ fill: "#f59e0b", r: 3 }}
               name="AI Platform Engineering"
               strokeOpacity={0.9}
               connectNulls={false}
-              strokeDasharray="0"
             />
           </LineChart>
         </ResponsiveContainer>
