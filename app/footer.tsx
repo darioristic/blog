@@ -11,8 +11,8 @@ export function Footer() {
         )
       </div>
       <div>
-        <A target="_blank" href="https://platforma.rs">
-        Let's Work Together
+        <A href="mailto:darioristic@gmail.com">
+        Let's Work
         </A>
       </div>
     </footer>
