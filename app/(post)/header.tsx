@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useSelectedLayoutSegments } from "next/navigation";
 import useSWR from "swr";
@@ -82,7 +82,7 @@ function Views({
   mutate: (data?: unknown) => void; 
   defaultValue: string | null; 
 }) {
-  const views = defaultValue;
+  const [views, setViews] = useState(defaultValue);
   const didLogViewRef = useRef(false);
 
   useEffect(() => {
@@ -92,6 +92,7 @@ function Views({
       fetch(url)
         .then(res => res.json())
         .then(obj => {
+          setViews(obj.viewsFormatted);
           mutate(obj);
         })
         .catch(console.error);
