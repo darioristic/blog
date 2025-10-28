@@ -17,27 +17,25 @@ const data = [
   // 2000-2005: Infrastructure abstractions era (OS-level abstractions, hardware virtualization starts)
   { year: "2000", infrastructure: 10, virtual: 0, cloud: 0, orchestration: 0, ai: 0 },
   { year: "2002", infrastructure: 25, virtual: 5, cloud: 0, orchestration: 0, ai: 0 },
-  { year: "2005", infrastructure: 45, virtual: 20, cloud: 0, orchestration: 0, ai: 0 },
+  { year: "2004", infrastructure: 35, virtual: 12, cloud: 0, orchestration: 0, ai: 0 },
   
-  // 2006-2010: Virtualization peaks (VMware, Xen dominance, cloud begins)
-  { year: "2007", infrastructure: 65, virtual: 45, cloud: 5, orchestration: 0, ai: 0 },
-  { year: "2008", infrastructure: 75, virtual: 60, cloud: 10, orchestration: 0, ai: 0 },
+  // 2005-2010: Virtualization peaks (VMware ESX 2001, but widespread 2005+)
+  { year: "2006", infrastructure: 55, virtual: 32, cloud: 0, orchestration: 0, ai: 0 },
+  { year: "2008", infrastructure: 70, virtual: 55, cloud: 8, orchestration: 0, ai: 0 },
   { year: "2010", infrastructure: 75, virtual: 80, cloud: 30, orchestration: 0, ai: 0 },
   
-  // 2011-2015: Cloud computing takes over, virtualization stabilizes
-  { year: "2012", infrastructure: 70, virtual: 85, cloud: 55, orchestration: 0, ai: 0 },
-  { year: "2014", infrastructure: 60, virtual: 80, cloud: 75, orchestration: 10, ai: 0 },
-  
-  // 2015-2020: Container orchestration era (Docker, Kubernetes boom)
+  // 2010-2015: Cloud computing takes over (AWS 2006 but mainstream 2010+)
+  { year: "2012", infrastructure: 72, virtual: 85, cloud: 55, orchestration: 0, ai: 0 },
+  { year: "2013", infrastructure: 65, virtual: 82, cloud: 68, orchestration: 5, ai: 0 },
   { year: "2015", infrastructure: 55, virtual: 75, cloud: 85, orchestration: 30, ai: 0 },
-  { year: "2017", infrastructure: 50, virtual: 70, cloud: 92, orchestration: 65, ai: 0 },
-  { year: "2019", infrastructure: 48, virtual: 68, cloud: 95, orchestration: 90, ai: 0 },
   
-  // 2020-2022: Pre-LLM AI infrastructure (ML platforms, early model serving)
+  // 2015-2020: Container orchestration era (Docker 2013, Kubernetes 2014, mainstream 2017+)
+  { year: "2017", infrastructure: 50, virtual: 70, cloud: 92, orchestration: 65, ai: 0 },
+  { year: "2019", infrastructure: 48, virtual: 68, cloud: 95, orchestration: 90, ai: 2 },
+  
+  // 2020-2025: AI era begins (GPT-3 2020, ChatGPT Nov 2022, GPT-4 March 2023)
   { year: "2021", infrastructure: 46, virtual: 66, cloud: 93, orchestration: 92, ai: 3 },
   { year: "2022", infrastructure: 45, virtual: 64, cloud: 91, orchestration: 88, ai: 8 },
-  
-  // 2022-2025: LLM/AI Platform Engineering era (ChatGPT boom, LLM infrastructure)
   { year: "2023", infrastructure: 44, virtual: 63, cloud: 90, orchestration: 85, ai: 35 },
   { year: "2024", infrastructure: 43, virtual: 62, cloud: 89, orchestration: 82, ai: 65 },
   { year: "2025", infrastructure: 42, virtual: 61, cloud: 88, orchestration: 80, ai: 85 },
@@ -163,11 +161,11 @@ export function Chart() {
             />
             <Tooltip content={<CustomTooltip />} />
             <Legend content={<CustomLegend isDark={isDark} payload={[
-              { value: "infrastructure", color: "#3b82f6" },
-              { value: "virtual", color: "#8b5cf6" },
-              { value: "cloud", color: "#06b6d4" },
-              { value: "orchestration", color: "#10b981" },
-              { value: "ai", color: "#f59e0b" },
+              { value: "infrastructure", color: "#3b82f6" },  // 2000
+              { value: "virtual", color: "#8b5cf6" },         // 2005
+              { value: "cloud", color: "#06b6d4" },           // 2010
+              { value: "orchestration", color: "#10b981" },   // 2015
+              { value: "ai", color: "#f59e0b" },              // 2022
             ]} />} />
             <Line
               type="monotone"
