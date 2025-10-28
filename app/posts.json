@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "ai-platform-engineering",
+      "date": "January 15, 2025",
+      "title": "AI Platform Engineering"
+    },
+    {
       "id": "beyond-the-model-intelligent-infrastructure-ai-frontier",
       "date": "October 14, 2025",
       "title": "Infrastructure that understands AI"
