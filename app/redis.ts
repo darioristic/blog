@@ -16,9 +16,16 @@ const mockViews: Record<string, number> = {};
 if (!process.env.UPSTASH_REDIS_REST_TOKEN) {
   console.warn("UPSTASH_REDIS_REST_TOKEN is not defined - using mock Redis for local development");
   redis = {
-    hgetall: async () => mockViews,
-    hget: async (key: string, field: string) => String(mockViews[field] ?? 0),
-    hincrby: async (key: string, field: string, increment: number) => {
+    hgetall: async () => {
+      // Convert number values to strings to match expected Redis API shape
+      const stringified: Record<string, string> = {};
+      for (const k in mockViews) {
+        stringified[k] = String(mockViews[k]);
+      }
+      return stringified;
+    },
+    hget: async (_key: string, field: string) => String(mockViews[field] ?? 0),
+    hincrby: async (_key: string, field: string, increment: number) => {
       mockViews[field] = (mockViews[field] ?? 0) + increment;
       return mockViews[field];
     },
