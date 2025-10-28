@@ -14,13 +14,17 @@ import {
 import { A } from "../../components/a";
 
 const data = [
-  { year: "2013", infrastructure: 100, orchestration: 0, ai: 0 },
-  { year: "2015", infrastructure: 100, orchestration: 100, ai: 0 },
-  { year: "2018", infrastructure: 100, orchestration: 100, ai: 0 },
-  { year: "2020", infrastructure: 100, orchestration: 100, ai: 0 },
-  { year: "2022", infrastructure: 100, orchestration: 100, ai: 30 },
-  { year: "2023", infrastructure: 100, orchestration: 100, ai: 70 },
-  { year: "2024", infrastructure: 100, orchestration: 100, ai: 100 },
+  { year: "2000", infrastructure: 0, virtual: 0, orchestration: 0, cloud: 0, ai: 0 },
+  { year: "2005", infrastructure: 60, virtual: 40, orchestration: 0, cloud: 0, ai: 0 },
+  { year: "2010", infrastructure: 80, virtual: 80, orchestration: 20, cloud: 30, ai: 0 },
+  { year: "2013", infrastructure: 100, virtual: 90, orchestration: 70, cloud: 70, ai: 0 },
+  { year: "2015", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 0 },
+  { year: "2018", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 10 },
+  { year: "2020", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 30 },
+  { year: "2022", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 60 },
+  { year: "2023", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 85 },
+  { year: "2024", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 95 },
+  { year: "2025", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 100 },
 ];
 
 const CustomLegend = (props: any) => {
@@ -33,6 +37,10 @@ const CustomLegend = (props: any) => {
           switch (value) {
             case "infrastructure":
               return "⚙️";
+            case "virtual":
+              return "💻";
+            case "cloud":
+              return "☁️";
             case "orchestration":
               return "📦";
             case "ai":
@@ -46,6 +54,10 @@ const CustomLegend = (props: any) => {
           switch (value) {
             case "infrastructure":
               return "Infrastructure Abstractions";
+            case "virtual":
+              return "Virtualization";
+            case "cloud":
+              return "Cloud Computing";
             case "orchestration":
               return "Container Orchestration";
             case "ai":
@@ -136,6 +148,8 @@ export function Chart() {
             <Tooltip content={<CustomTooltip />} />
             <Legend content={<CustomLegend isDark={isDark} payload={[
               { value: "infrastructure", color: "#3b82f6" },
+              { value: "virtual", color: "#8b5cf6" },
+              { value: "cloud", color: "#06b6d4" },
               { value: "orchestration", color: "#10b981" },
               { value: "ai", color: "#f59e0b" },
             ]} />} />
@@ -146,6 +160,24 @@ export function Chart() {
               strokeWidth={2}
               dot={false}
               name="Infrastructure Abstractions"
+              strokeOpacity={0.9}
+            />
+            <Line
+              type="monotone"
+              dataKey="virtual"
+              stroke="#8b5cf6"
+              strokeWidth={2}
+              dot={false}
+              name="Virtualization"
+              strokeOpacity={0.9}
+            />
+            <Line
+              type="monotone"
+              dataKey="cloud"
+              stroke="#06b6d4"
+              strokeWidth={2}
+              dot={false}
+              name="Cloud Computing"
               strokeOpacity={0.9}
             />
             <Line
@@ -170,7 +202,7 @@ export function Chart() {
         </ResponsiveContainer>
       </div>
       <p className="text-center mt-4 px-4 font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-        Platform Engineering evolution: From infrastructure to orchestration to AI abstractions
+        Platform Engineering evolution: 25 years from infrastructure abstractions to AI platform engineering
       </p>
     </div>
   );
