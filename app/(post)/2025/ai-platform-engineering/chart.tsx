@@ -31,12 +31,16 @@ const data = [
   // 2015-2020: Container orchestration era (Docker, Kubernetes boom)
   { year: "2015", infrastructure: 55, virtual: 75, cloud: 85, orchestration: 30, ai: 0 },
   { year: "2017", infrastructure: 50, virtual: 70, cloud: 92, orchestration: 65, ai: 0 },
-  { year: "2019", infrastructure: 48, virtual: 68, cloud: 95, orchestration: 90, ai: 5 },
+  { year: "2019", infrastructure: 48, virtual: 68, cloud: 95, orchestration: 90, ai: 0 },
   
-  // 2020-2025: AI Platform Engineering era begins
-  { year: "2021", infrastructure: 46, virtual: 66, cloud: 93, orchestration: 92, ai: 20 },
-  { year: "2023", infrastructure: 45, virtual: 64, cloud: 91, orchestration: 88, ai: 55 },
-  { year: "2025", infrastructure: 44, virtual: 63, cloud: 90, orchestration: 85, ai: 85 },
+  // 2020-2022: Pre-LLM AI infrastructure (ML platforms, early model serving)
+  { year: "2021", infrastructure: 46, virtual: 66, cloud: 93, orchestration: 92, ai: 3 },
+  { year: "2022", infrastructure: 45, virtual: 64, cloud: 91, orchestration: 88, ai: 8 },
+  
+  // 2022-2025: LLM/AI Platform Engineering era (ChatGPT boom, LLM infrastructure)
+  { year: "2023", infrastructure: 44, virtual: 63, cloud: 90, orchestration: 85, ai: 35 },
+  { year: "2024", infrastructure: 43, virtual: 62, cloud: 89, orchestration: 82, ai: 65 },
+  { year: "2025", infrastructure: 42, virtual: 61, cloud: 88, orchestration: 80, ai: 85 },
 ];
 
 const CustomLegend = (props: any) => {
