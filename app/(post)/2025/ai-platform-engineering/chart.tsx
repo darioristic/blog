@@ -31,11 +31,11 @@ const data = [
   
   // 2015-2020: Container orchestration era (Docker 2013, Kubernetes 2014, mainstream 2017+)
   { year: "2017", infrastructure: 50, virtual: 70, cloud: 92, orchestration: 65, ai: 0 },
-  { year: "2019", infrastructure: 48, virtual: 68, cloud: 95, orchestration: 90, ai: 2 },
+  { year: "2019", infrastructure: 48, virtual: 68, cloud: 95, orchestration: 90, ai: 0 },
+  { year: "2021", infrastructure: 46, virtual: 66, cloud: 93, orchestration: 92, ai: 0 },
   
-  // 2020-2025: AI era begins (GPT-3 2020, ChatGPT Nov 2022, GPT-4 March 2023)
-  { year: "2021", infrastructure: 46, virtual: 66, cloud: 93, orchestration: 92, ai: 3 },
-  { year: "2022", infrastructure: 45, virtual: 64, cloud: 91, orchestration: 88, ai: 8 },
+  // 2022-2025: AI era begins (ChatGPT Nov 2022, AI Platform Engineering starts)
+  { year: "2022", infrastructure: 45, virtual: 64, cloud: 91, orchestration: 88, ai: 5 },
   { year: "2023", infrastructure: 44, virtual: 63, cloud: 90, orchestration: 85, ai: 35 },
   { year: "2024", infrastructure: 43, virtual: 62, cloud: 89, orchestration: 82, ai: 65 },
   { year: "2025", infrastructure: 42, virtual: 61, cloud: 88, orchestration: 80, ai: 85 },
@@ -46,11 +46,11 @@ const CustomLegend = (props: any) => {
 
   // Recharts reverses the order, so we need to display them in chronological order
   const chronologicalOrder = [
-    { key: "infrastructure", label: "Infrastructure Abstractions", icon: "⚙️", year: "2000" },
-    { key: "virtual", label: "Virtualization", icon: "💻", year: "2005" },
-    { key: "cloud", label: "Cloud Computing", icon: "☁️", year: "2010" },
-    { key: "orchestration", label: "Container Orchestration", icon: "📦", year: "2015" },
-    { key: "ai", label: "AI Platform Engineering", icon: "🤖", year: "2022" },
+    { key: "infrastructure", label: "Infrastructure Abstractions (2000)", year: "2000" },
+    { key: "virtual", label: "Virtualization (2005)", year: "2005" },
+    { key: "cloud", label: "Cloud Computing (2010)", year: "2010" },
+    { key: "orchestration", label: "Container Orchestration (2015)", year: "2015" },
+    { key: "ai", label: "AI Platform Engineering (2022)", year: "2022" },
   ];
 
   return (
@@ -60,7 +60,6 @@ const CustomLegend = (props: any) => {
 
         return (
           <div key={`legend-${index}`} className="flex items-center gap-2">
-            <span>{item.icon}</span>
             <span
               className={`font-mono text-xs whitespace-nowrap`}
               style={{
