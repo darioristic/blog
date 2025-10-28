@@ -1,6 +1,6 @@
 {
-  "buildCommand": "bun install && bun run build",
-  "installCommand": "bun install",
+  "installCommand": "curl -fsSL https://bun.sh/install | bash && bun install",
+  "buildCommand": "bun run build",
   "framework": "nextjs"
 }
 
