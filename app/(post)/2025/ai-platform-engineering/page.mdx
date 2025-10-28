@@ -4,41 +4,57 @@ export const metadata = {
   date: '2025-01-15',
 }
 
-Platform Engineering is the pattern that successful organizations use. Sometimes, people have this shortsighted view that platform engineering is only about building infrastructure and pipelines to deploy apps to Kubernetes. Platform engineering is about building abstractions over infrastructure, tools, and processes that help teams deliver value more efficiently.
+Every successful engineering organization follows a simple pattern: they build platforms. These platforms aren't just infrastructure or fancy tooling—they're carefully crafted abstractions that let teams focus on what they do best: building features that matter.
 
-Yesterday, it was about Kubernetes. Today, it is also about providing access to approved LLM models, RAG mechanisms, vector databases, caching, model versioning, and connectors to legacy data sources, hence AI Platform Engineering.
+It's time to update our mental model of what platform engineering means.
 
-## The Evolution
+## The Platform Engineering Evolution
 
-When I started working with platform engineering in the early days of cloud-native transformation, the focus was clear: abstract away the complexity of deploying applications to Kubernetes. Build the pipelines, set up the CI/CD, create the development environments—make it easy for teams to ship software.
+When I first started building platforms for cloud-native organizations a decade ago, the mission was clear: abstract away the complexity of deploying applications. Make Kubernetes invisible. Create pipelines. Build environments. Reduce the cognitive load so engineering teams could focus on writing code.
 
-But technology moves fast, and so do the needs of our organizations. We've now entered an era where AI capabilities are becoming core to every application. The question isn't whether your organization will adopt AI—it's how quickly and effectively.
+The industry has evolved, and so have the challenges. Traditional platform engineering solved the "how do I deploy my app" problem. Today, we're facing a new frontier: "how do I make my app intelligent?"
 
-## What Makes AI Platform Engineering Different
+This isn't about adding AI features as an afterthought. It's about recognizing that AI is becoming infrastructure—and infrastructure needs abstractions.
 
-Traditional platform engineering gave you abstractions for:
-- Container orchestration
-- Service discovery
-- Load balancing
-- Storage and databases
-- Deployment pipelines
+## What AI Platform Engineering Adds
 
-AI Platform Engineering extends these abstractions to include:
+Traditional platform engineering gave us:
 
-**Model Management**: Approved LLM models with proper governance and usage tracking
-**RAG Capabilities**: Vector databases and retrieval mechanisms that teams can use without becoming experts
-**Intelligent Caching**: Caching strategies aware of token limits and model responses
-**Model Versioning**: Tracking and managing different model versions, A/B testing capabilities
-**Legacy Connectors**: Integration with existing data sources that weren't built for AI workloads
+- Container orchestration and service management
+- Deployment pipelines and CI/CD
+- Service discovery and load balancing
+- Storage and database abstractions
 
-## Why This Matters
+**AI Platform Engineering** extends this foundation with:
 
-The transition from traditional platform engineering to AI Platform Engineering isn't just about adding new tools—it's about recognizing that AI is becoming infrastructure. Just like we abstracted away the details of container orchestration, we need to abstract away the complexity of working with AI models.
+**Model Management**: Controlled access to approved LLM models with governance, usage tracking, and cost management
 
-Teams shouldn't need to know the difference between GPT-4 and Claude, or understand vector embeddings, to build intelligent features. That's what AI Platform Engineering delivers: the ability to build AI-powered applications without becoming an AI expert.
+**RAG Infrastructure**: Vector databases and retrieval mechanisms that teams can leverage without becoming embedding experts
 
-## My Experience
+**Intelligent Caching**: Caching strategies that understand token limits, model responses, and conversation context
 
-In my journey building platforms for cloud-native organizations, I've seen this pattern repeat itself. The organizations that succeed are the ones that provide the right abstractions at the right time. Kubernetes became the abstraction for container orchestration. Now, we need abstractions for AI capabilities.
+**Model Versioning**: A/B testing capabilities for models, tracking performance, and managing rollbacks safely
 
-The work we're doing today with AI Platform Engineering is exactly that—creating the foundational layer that will enable teams to build intelligent applications without getting lost in the complexity of AI infrastructure.
+**Legacy Integration**: Connectors that bridge existing data sources with AI workloads—because your valuable data isn't all in modern formats
+
+## Why This Matters Now
+
+The transition from traditional to AI platform engineering isn't just about new tools. It's about pattern recognition.
+
+Organizations that succeeded with cloud-native transformations were the ones that provided the right abstractions at the right moment. Kubernetes became the abstraction for "where my code runs." Container registries became the abstraction for "how my code gets packaged."
+
+Now, we need similar abstractions for intelligence.
+
+Teams shouldn't need to understand the nuances between GPT-4 and Claude to build smart features. They shouldn't need to become vector database experts to implement semantic search. They shouldn't need to understand token limits to build conversational interfaces.
+
+That's what AI Platform Engineering delivers: the ability to build intelligent applications without becoming AI infrastructure experts.
+
+## The Pattern Continues
+
+In my journey building platforms—from early cloud-native transformations to today's AI-powered systems—I've watched this pattern play out multiple times.
+
+The technology changes. The complexity grows. But the pattern remains: **successful organizations provide abstractions that reduce cognitive load and accelerate delivery**.
+
+Today, AI is the frontier. Tomorrow, it will be something else. The specific abstractions evolve, but the principle of platform engineering endures: make the complex simple, make the tedious automated, make the team more capable.
+
+Building AI Platform Engineering isn't just about today's LLM capabilities—it's about establishing the foundation that will support whatever intelligence-driven capabilities emerge next.
