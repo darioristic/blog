@@ -33,9 +33,10 @@ if (!process.env.UPSTASH_REDIS_REST_TOKEN) {
     set: async () => "OK"
   };
 } else {
+  const upstashUrl = process.env.UPSTASH_REDIS_REST_URL || "https://global-apt-bear-30602.upstash.io";
   redis = new Redis({
-    url: "https://global-apt-bear-30602.upstash.io",
-    token: process.env.UPSTASH_REDIS_REST_TOKEN,
+    url: upstashUrl,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN!,
   });
 }
 
