@@ -44,24 +44,22 @@ const CustomLegend = (props: any) => {
 
   // Recharts reverses the order, so we need to display them in chronological order
   const chronologicalOrder = [
-    { key: "infrastructure", label: "Infrastructure Abstractions (2000)", year: "2000" },
-    { key: "virtual", label: "Virtualization (2005)", year: "2005" },
-    { key: "cloud", label: "Cloud Computing (2010)", year: "2010" },
-    { key: "orchestration", label: "Container Orchestration (2015)", year: "2015" },
-    { key: "ai", label: "AI Platform Engineering (2022)", year: "2022" },
+    { key: "infrastructure", label: "Infrastructure Abstractions (2000)", year: "2000", color: "#3b82f6" },
+    { key: "virtual", label: "Virtualization (2005)", year: "2005", color: "#8b5cf6" },
+    { key: "cloud", label: "Cloud Computing (2010)", year: "2010", color: "#06b6d4" },
+    { key: "orchestration", label: "Container Orchestration (2015)", year: "2015", color: "#10b981" },
+    { key: "ai", label: "AI Platform Engineering (2022)", year: "2022", color: "#f59e0b" },
   ];
 
   return (
     <div className="flex flex-wrap justify-center gap-x-7 gap-y-3 mt-6">
       {chronologicalOrder.map((item, index: number) => {
-        const entry = payload.find((p: any) => p.value === item.key) || payload[index];
-
         return (
           <div key={`legend-${index}`} className="flex items-center gap-2">
             <span
               className={`font-mono text-xs whitespace-nowrap`}
               style={{
-                color: entry?.color || undefined,
+                color: item.color,
               }}
             >
               {item.label}
