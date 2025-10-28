@@ -14,17 +14,29 @@ import {
 import { A } from "../../components/a";
 
 const data = [
-  { year: "2000", infrastructure: 0, virtual: 0, orchestration: 0, cloud: 0, ai: 0 },
-  { year: "2005", infrastructure: 60, virtual: 40, orchestration: 0, cloud: 0, ai: 0 },
-  { year: "2010", infrastructure: 80, virtual: 80, orchestration: 20, cloud: 30, ai: 0 },
-  { year: "2013", infrastructure: 100, virtual: 90, orchestration: 70, cloud: 70, ai: 0 },
-  { year: "2015", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 0 },
-  { year: "2018", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 10 },
-  { year: "2020", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 30 },
-  { year: "2022", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 60 },
-  { year: "2023", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 85 },
-  { year: "2024", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 95 },
-  { year: "2025", infrastructure: 100, virtual: 100, orchestration: 100, cloud: 100, ai: 100 },
+  // 2000-2005: Infrastructure abstractions era (OS-level abstractions, hardware virtualization starts)
+  { year: "2000", infrastructure: 10, virtual: 0, cloud: 0, orchestration: 0, ai: 0 },
+  { year: "2002", infrastructure: 25, virtual: 5, cloud: 0, orchestration: 0, ai: 0 },
+  { year: "2005", infrastructure: 45, virtual: 20, cloud: 0, orchestration: 0, ai: 0 },
+  
+  // 2006-2010: Virtualization peaks (VMware, Xen dominance, cloud begins)
+  { year: "2007", infrastructure: 65, virtual: 45, cloud: 5, orchestration: 0, ai: 0 },
+  { year: "2008", infrastructure: 75, virtual: 60, cloud: 10, orchestration: 0, ai: 0 },
+  { year: "2010", infrastructure: 75, virtual: 80, cloud: 30, orchestration: 0, ai: 0 },
+  
+  // 2011-2015: Cloud computing takes over, virtualization stabilizes
+  { year: "2012", infrastructure: 70, virtual: 85, cloud: 55, orchestration: 0, ai: 0 },
+  { year: "2014", infrastructure: 60, virtual: 80, cloud: 75, orchestration: 10, ai: 0 },
+  
+  // 2015-2020: Container orchestration era (Docker, Kubernetes boom)
+  { year: "2015", infrastructure: 55, virtual: 75, cloud: 85, orchestration: 30, ai: 0 },
+  { year: "2017", infrastructure: 50, virtual: 70, cloud: 92, orchestration: 65, ai: 0 },
+  { year: "2019", infrastructure: 48, virtual: 68, cloud: 95, orchestration: 90, ai: 5 },
+  
+  // 2020-2025: AI Platform Engineering era begins
+  { year: "2021", infrastructure: 46, virtual: 66, cloud: 93, orchestration: 92, ai: 20 },
+  { year: "2023", infrastructure: 45, virtual: 64, cloud: 91, orchestration: 88, ai: 55 },
+  { year: "2025", infrastructure: 44, virtual: 63, cloud: 90, orchestration: 85, ai: 85 },
 ];
 
 const CustomLegend = (props: any) => {
