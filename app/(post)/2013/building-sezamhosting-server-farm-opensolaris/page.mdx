@@ -1,0 +1,153 @@
+export const metadata = {
+  title: "Building SezamPro Hosting Server Farm with OpenSolaris",
+  description:
+    "How I built a fully redundant OpenSolaris server farm with more than 200 physical servers across two datacenters, embracing Unix philosophy",
+  openGraph: {
+    title: "Building SezamPro Hosting Server Farm with OpenSolaris",
+    description:
+      "How I built a fully redundant OpenSolaris server farm with more than 200 physical servers across two datacenters, embracing Unix philosophy",
+    images: [
+      {
+        url: "/og/building-sezamhosting-server-farm-opensolaris",
+      },
+    ],
+  },
+};
+
+Most hosting companies run on traditional infrastructure. I have a different vision: build a reliable, scalable hosting platform using OpenSolaris and follow Unix philosophy to the letter. The SezamPro Hosting infrastructure consists of more than 200 physical servers distributed across two datacenters, providing complete redundancy and high availability. Servers are split roughly 50/50 between datacenters, ensuring that if one datacenter fails, the other continues serving customers without interruption.
+
+## Why OpenSolaris?
+
+Let me be honest—choosing OpenSolaris isn't the most popular decision right now. Most hosting providers run Linux. But I have specific reasons:
+
+**ZFS (Zettabyte File System)**: This is the game-changer. ZFS offers data integrity checking, snapshots, copy-on-write, and compression—features that Linux filesystems don't have right now. For a hosting company managing customer data, data integrity isn't negotiable. ZFS detects and corrects data corruption automatically. That alone justifies the choice.
+
+**DTrace**: The dynamic tracing framework that lets you see what's happening inside running systems without restarting or recompiling. When you're debugging production issues at 3 AM, DTrace is a lifesaver. You can ask "Why is this process slow?" and get answers without guessing.
+
+**SMF (Service Management Facility)**: Services that self-heal, have dependencies, and restart automatically. If a database crashes, SMF brings it back online. You don't need to write custom monitoring scripts—the system handles it.
+
+**Zones**: Lightweight virtualization that provides container-like isolation. I can run multiple customer environments on a single server with complete isolation, efficient resource sharing, and easy migration.
+
+These aren't just nice-to-have features. They are fundamental capabilities that make OpenSolaris ideal for hosting infrastructure.
+
+## The Architecture
+
+The Unix philosophy guides everything: **write programs that do one thing and do it well**. Each server has a specific purpose.
+
+### Geographic Distribution: Two Datacenters
+
+The SezamPro Hosting infrastructure spans more than 200 physical servers across two geographically separate datacenters. Servers are distributed roughly evenly between datacenters, providing complete redundancy. If one datacenter experiences a failure—hardware issues, network outages, or natural disasters—the other datacenter automatically takes over. Customers experience zero downtime.
+
+This distribution isn't just about redundancy. Geographic separation means customers get better performance through location proximity, disaster recovery, and automatic failover. Load balancing spreads traffic across both datacenters, but in the event of one datacenter going offline, all traffic routes to the remaining operational datacenter without manual intervention.
+
+### Frontend Web Servers
+
+We run Apache on lightweight hardware optimized for serving HTTP requests. Nothing else. No databases, no complex logic, just HTTP serving. This isolation makes problems obvious—when a web server struggles, we know exactly what to check.
+
+Web servers are distributed across both datacenters. Each datacenter runs roughly half of the web server capacity, ensuring that even if an entire datacenter fails, the other datacenter maintains full operational capability. Load balancing distributes requests across all available servers in both datacenters.
+
+Each web server runs in a non-global zone for isolation. Customer A can't affect customer B, even if one customer's site experiences traffic spikes. Resource controls (resource pools in Solaris) ensure fair CPU and memory allocation.
+
+### Database Servers
+
+MySQL databases run on separate, beefier hardware. Write-optimized SSDs for better I/O performance. RAID arrays for redundancy. This separation is obvious, but many hosting providers still run everything on the same box.
+
+Database servers are distributed across both datacenters with master-slave replication. Each datacenter runs dedicated database nodes with continuous data replication between sites. If one datacenter's database layer fails, the other datacenter's databases continue serving queries. This redundancy is critical for maintaining data availability and integrity.
+
+The key insight: databases have different workload patterns than web servers. They need more memory for caching, different I/O characteristics, and specific tuning. Keeping them separate lets you optimize each layer independently.
+
+### Storage Servers with ZFS
+
+This is where OpenSolaris really shines. I run dedicated storage servers with ZFS and massive storage pools. ZFS features that matter:
+
+**Snapshots**: Before any major customer change, we take a snapshot. If something breaks, rollback is instant. Customers love this—their mistakes become recoverable.
+
+**Compression**: ZFS compression saves significant disk space. Text files, which most websites contain, compress well. We get roughly 2x effective capacity on some workloads just by enabling compression.
+
+**Copy-on-write**: ZFS uses copy-on-write, which means writing to a filesystem doesn't overwrite data—it writes to a new location and updates pointers. If a write is interrupted by a crash, old data remains intact. No fsck needed after crashes.
+
+**RAID-Z**: ZFS's software RAID implementation. RaidZ1 (equivalent to RAID 5) for cost-effective redundancy, RaidZ2 (RAID 6) for mission-critical data. Self-healing—if corruption is detected, ZFS reads redundant data and repairs automatically.
+
+The storage layer is the foundation for everything else. With more than 200 physical servers across two datacenters, ZFS replication between sites is critical. We replicate ZFS filesystems from primary datacenter to secondary datacenter efficiently using `zfs send` and `zfs receive`. The entire filesystem state streams efficiently, enabling near-real-time replication across sites. If one datacenter's storage fails, the other datacenter has complete copies of all data, ready to serve.
+
+## Unix Philosophy in Practice
+
+Unix philosophy shapes every design decision:
+
+### Make Each Program Do One Thing Well
+
+Instead of monolithic servers running web+db+mail+everything, each service lives on dedicated hardware. Web servers serve web. Database servers query data. Mail servers handle email. This makes problems local—a web issue doesn't affect mail delivery.
+
+### Expect the Output of Every Program to Become the Input to Another
+
+Logs from all servers aggregate to a central syslog server. Monitoring scripts consume those logs. Alerting systems consume monitoring data. Each piece produces output that feeds the next stage of the pipeline.
+
+This composability makes troubleshooting powerful. When a customer reports slow performance, I can trace requests across multiple systems using standard Unix tools: grep, awk, sort, uniq. No custom dashboards needed—standard tools work because everything speaks text.
+
+### Use Text for Communication
+
+Configuration is managed through text files (Service Management Facility manifests, ZFS properties, standard Unix config files). Everything is scriptable. Migrations are shell scripts that move data, update configurations, and verify success.
+
+When I need to scale out—add more web servers—the process is scripted. Provision new hardware, install OpenSolaris, configure zones, copy data, update load balancer config. Repeatable, auditable, automatable.
+
+## Challenges and Solutions
+
+### Challenge 1: Performance Under Load
+
+Under heavy load, some databases struggle. Random I/O from MySQL isn't optimal for spinning disks.
+
+**Solution**: Switch to SSDs for database servers. The random I/O performance difference between SSDs and spinning disks is dramatic. Combined with ZFS read caching, database performance improves significantly.
+
+ZFS's adaptive replacement cache (ARC) keeps frequently accessed data in memory, reducing disk I/O. For database workloads with repetitive queries, this caching layer is incredibly effective.
+
+### Challenge 2: Resource Contention
+
+If all customer environments run on the same hardware with basic resource limits, one customer's traffic spike can affect others.
+
+**Solution**: Deploy Solaris resource pools and projects. Each customer zone gets a resource pool with CPU shares and memory caps. CPU shares ensure fair scheduling under contention—if customer A has 2x shares of customer B, customer A gets 2x CPU time. Memory caps prevent any single customer from consuming all RAM.
+
+This means customer B's stability never depends on customer A's traffic patterns. True isolation, not just virtualization.
+
+### Challenge 3: Backup and Recovery Across Datacenters
+
+Backups need to be reliable, fast, and space-efficient. Traditional tools are slow and unreliable. With more than 200 physical servers across two datacenters, ensuring data availability and recoverability is critical.
+
+**Solution**: ZFS snapshots combined with `zfs send` provide our backup strategy. Snapshots are instantaneous—they're just metadata. Sending snapshot deltas (`zfs send -I`) transmits only changed data across datacenters. The continuous replication between the two datacenters ensures that data loss is impossible—if primary datacenter fails, secondary has everything.
+
+Recovery is trivial: `zfs receive` on backup server restores entire filesystems. No tapes, no lengthy restore processes. Snapshots live on storage, and deleted snapshots free space automatically.
+
+This backup strategy scales effortlessly across more than 200 physical servers. Adding new customers means adding new zones—backups happen automatically via snapshot scheduling in both datacenters simultaneously.
+
+## Practice That Works
+
+### Unix Philosophy Scales
+
+When you compose small tools into systems, scaling comes naturally. Adding new web servers means running the same provisioning script—no special configuration needed. Each server knows its role and does it well.
+
+### Simplicity Over Complexity
+
+I avoid over-engineering. No complex orchestration systems. No centralized configuration databases. Just standard Unix tools and good documentation. This simplicity makes the system maintainable by anyone who understands Unix fundamentals.
+
+### Make Failure Cheap
+
+ZFS snapshots, automated service restart, resource controls that prevent cascading failures—every piece is designed to handle failures gracefully. A web server crashes? SMF restarts it. A database corruption? Restore from snapshot. A customer's zone gets compromised? Only that zone is affected, not the whole server.
+
+This resilience matters. If hardware fails, recovery is straightforward. If customers push their environments too hard, resource controls contain the damage.
+
+### Documentation is Infrastructure
+
+I write down everything: server purposes, network topologies, ZFS pool layouts, common procedures. This documentation is infrastructure—when I'm not around, others can operate the system using the docs.
+
+Text files for documentation live in version control. Documentation evolves like code—changes are tracked, reviewed, and improved.
+
+## Why These Principles Matter
+
+**Separation of concerns**: Web, database, storage on different servers keeps responsibilities clear and performance predictable.
+
+**Infrastructure as data**: ZFS properties, SMF manifests, zone configurations—everything is declarative and version-controllable.
+
+**Observability**: DTrace gives insights into running systems that static monitoring tools can't provide.
+
+**Automated recovery**: Services that restart themselves, storage that self-heals—this is the essence of reliability.
+
+Unix philosophy isn't academic—it's pragmatic. When you build systems by composing small, focused tools, the resulting architecture is maintainable, scalable, and debuggable. Every problem becomes solvable by existing tools rather than requiring custom solutions.

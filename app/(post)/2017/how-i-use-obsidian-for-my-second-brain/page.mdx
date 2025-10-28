@@ -1,0 +1,208 @@
+export const metadata = {
+  title: "How I Use Obsidian for My Second Brain",
+  description:
+    "A personal walkthrough of my Obsidian setup and workflow for building an effective Second Brain",
+  openGraph: {
+    title: "How I Use Obsidian for My Second Brain",
+    description:
+      "A personal walkthrough of my Obsidian setup and workflow for building an effective Second Brain",
+    images: [{ url: "/og/how-i-use-obsidian-for-my-second-brain" }],
+  },
+};
+
+You're probably reading this because you've heard about Obsidian's bidirectional linking or its graph view, and you're wondering if it's worth the complexity. Maybe you've tried Notion or Evernote and found them too limiting for the way you think. Or maybe you've been building a Second Brain in various tools and nothing quite fits how your mind works.
+
+I get it. I've been there. Today, I'm sharing exactly how I use Obsidian, not as a theoretical guide, but as a practical walkthrough of what actually works in my daily life.
+
+## Why Obsidian?
+
+Let me be honest: when I first started with Second Brains, I went through the tool parade. Notion felt too structured. Evernote was clunky. Roam was powerful but overwhelming. I needed something that got out of my way while still giving me the connections I wanted.
+
+Obsidian clicked because it's plain text markdown files. That means:
+
+- Everything is portable—no vendor lock-in
+- Works offline
+- Syncs anywhere (I use iCloud)
+- Simple enough to learn, powerful enough to scale
+- The linking is what makes it special
+
+## My Folder Structure
+
+I've experimented with elaborate folder hierarchies, and they all felt constraining. Now I keep it brutally simple:
+
+```
+Vault/
+├── 00-Inbox/
+├── Areas/
+│   ├── Work/
+│   ├── Learning/
+│   └── Personal Growth/
+├── Projects/
+├── Archive/
+└── Maps of Content/
+```
+
+**Inbox** is where everything lands first. Articles, random thoughts, meeting notes. It's my capture point.
+
+**Areas** are ongoing responsibilities. Work notes go in Work. Learning resources go in Learning. This isn't about perfection—it's about "will I remember where I put this?"
+
+**Projects** are active work with a clear end. When a project completes, it moves to Archive.
+
+**Archive** is where old projects live. I rarely look here, but it's there if I need it.
+
+**Maps of Content** are my table of contents pages. I'll get to why these matter.
+
+## The Linking System
+
+Here's what makes Obsidian different: bidirectional links. When you write `[[Link to Another Note]]`, you're not just creating a link—you're creating a relationship that works both ways.
+
+This is where the magic happens. Say I'm writing about DevOps culture. I create a link to `[[Cross-functional Teams]]` and `[[SRE Practices]]`. Later, when I'm working on those notes, I can see a backlink: "DevOps culture" was mentioned in this note.
+
+This backlink feature means every note becomes a knowledge hub. You write once, but the connections build themselves over time. After a year of using Obsidian, notes I'd forgotten about resurface through backlinks when I'm researching something new.
+
+## My Daily Workflow
+
+### Morning: Inbox Processing
+
+First thing, I process my inbox. Everything in there gets either:
+
+- Moved to a project folder
+- Filed in an area
+- Linked to other notes
+- Deleted if it's no longer relevant
+
+Five to ten minutes. That's it. If it takes longer, I'm overthinking the organization.
+
+### During the Day: Quick Capture
+
+I use Quick Add plugin for frictionless capture. Cmd+Space, type the note, hit enter. It goes to my inbox. I think about where it belongs later during processing.
+
+For meeting notes, I create a note in the relevant project folder. At the end of the day, I link to related notes—maybe that idea connects to something I read last week.
+
+### Weekly: Review and Connect
+
+Every Friday, I spend 30 minutes reviewing the week. I look for:
+
+- Notes without links (should I connect them to something?)
+- Orphaned notes (do they belong somewhere?)
+- Clusters of related ideas (should I create a Map of Content?)
+
+This weekly review is where the knowledge web builds. As I review, I naturally create links between related concepts.
+
+### Monthly: Distill and Archive
+
+Once a month, I go through active projects. I distill key insights—what did I actually learn? What should be extracted and highlighted? Then I move completed projects to Archive.
+
+The goal isn't hoarding everything—it's keeping relevant knowledge accessible.
+
+## Maps of Content
+
+These are probably my favorite Obsidian feature. A Map of Content (MOC) is an index note that links to related topics.
+
+For example, my "DevOps" MOC links to:
+
+- Infrastructure as Code notes
+- CI/CD pipelines
+- Container orchestration
+- SRE practices
+- Related projects
+
+Instead of searching for "DevOps" and hoping I find all related notes, my MOC gives me a curated view. It's like a personal Wikipedia page for every major topic I care about.
+
+I create MOCs when I have 3+ notes on a topic that would benefit from central navigation. It's not about being comprehensive—it's about making clusters of knowledge easier to access.
+
+## Tags vs Links: My Strategy
+
+I used to be a tag hoarder. Every note had six tags. Then I realized tags are flat—they filter but don't show relationships.
+
+Now I use tags sparingly:
+
+- `#in-progress` for active projects
+- `#toreview` for things I need to look at
+- That's about it
+
+Everything else is links. Links create the web. Tags create categories. The web is more valuable because it shows how ideas relate.
+
+## Plugins I Actually Use
+
+Obsidian has hundreds of plugins. Here are the three I actually use:
+
+**Quick Add**: Frictionless capture. Cmd+Space anywhere, capture anything.
+
+**Templater**: Templates for recurring notes. Meeting notes have the same structure. Project notes follow a pattern.
+
+**Dataview**: Occasionally. When I want to list all notes with a specific tag or from a date range. Useful but not daily.
+
+That's it. I don't use a dozen plugins because complexity kills consistency. Keep it simple.
+
+## My Writing Process
+
+When I'm writing a blog post or article:
+
+1. I start by searching Obsidian for existing thoughts on the topic
+2. I review the relevant notes and backlinks to understand what I already know
+3. I create a new note in the Projects folder
+4. I link to relevant notes from my Second Brain—quotes, insights, patterns I've captured
+5. As I write, I update those linked notes with new insights
+
+This workflow means I'm always building on accumulated knowledge rather than starting from scratch.
+
+## What Actually Works
+
+After over a year of using Obsidian as my Second Brain, here's what actually works:
+
+**Simple folders**—don't overcomplicate the structure.
+
+**Consistent linking**—the web builds itself when you link regularly.
+
+**Weekly processing**—set a rhythm and stick to it.
+
+**Maps of Content**—when topics grow, create a hub.
+
+**It's OK to be messy**—a working messy system beats a perfect system you don't use.
+
+The biggest mistake I see people make with Obsidian is trying to set up the perfect system before using it. Start messy. Link liberally. Process weekly. Let the system evolve as you learn what works for your brain.
+
+## The Graph View Question
+
+Everyone asks about the graph view—that beautiful network visualization Obsidian shows. It looks impressive, but honestly? I barely use it. It's satisfying to see all your notes connected, but it's not part of my daily workflow.
+
+I don't think about the graph when I'm working. I just link naturally, and the graph exists as a reflection of how I think. Using Obsidian shouldn't be about crafting a beautiful graph—it should be about making your thoughts accessible.
+
+## My Actual Results
+
+Has this improved my work? Absolutely. Here's what changed:
+
+**I remember things**—because I've captured them in a searchable form.
+
+**I see connections**—backlinks surface related ideas I'd forgotten.
+
+**I write faster**—my Second Brain provides quotes, insights, and references on demand.
+
+**I'm less anxious**—knowing things are captured reduces cognitive load.
+
+**I learn better**—active capture and linking helps me understand topics more deeply.
+
+But here's the real test: six months after capturing an insight about a problem, I can search for it and find it. That alone makes Obsidian worth it.
+
+## Getting Started
+
+If you're starting with Obsidian for your Second Brain:
+
+1. **Create the simple folder structure** I showed earlier
+2. **Download Quick Add plugin**—start capturing immediately
+3. **For one week**, just capture everything to your inbox. Don't worry about organization yet.
+4. **After a week**, spend 30 minutes organizing. Move stuff where it makes sense. Create links between related notes.
+5. **Then repeat**—capture daily, process weekly, organize monthly.
+
+Don't try to import your entire digital life on day one. Start by using Obsidian for one project. See how it feels. Then expand.
+
+The goal isn't a perfect Second Brain—it's a useful one. Obsidian works for me because it gets out of the way and lets me think, while still maintaining enough structure that my notes are findable later.
+
+## Final Thoughts
+
+Obsidian isn't for everyone. If you want simplicity, use Plain text files. If you want structure, use Notion. But if you want a Second Brain that connects ideas and grows more valuable over time, Obsidian is worth the learning curve.
+
+The most important thing isn't which tool you use—it's that you use it consistently. A simple markdown file you actually maintain beats the most sophisticated system you abandon.
+
+Start small. Link liberally. Process regularly. Let your Second Brain evolve with you. That's how Obsidian works best.

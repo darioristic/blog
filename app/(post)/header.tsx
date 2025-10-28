@@ -1,9 +1,11 @@
 "use client";
 
-import { useSelectedLayoutSegments } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { ago } from "time-ago";
+
+import { useSelectedLayoutSegments } from "next/navigation";
 import useSWR from "swr";
+import { ago } from "time-ago";
+
 import type { Post } from "@/app/get-posts";
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
@@ -38,11 +40,12 @@ export function Header({ posts }: { posts: Post[] }) {
           <span className="hidden md:inline">
             <span>
               <a
-                href="https://twitter.com/rauchg"
+                href="https://twitter.com/dario_ristic"
                 className="hover:text-neutral-800 dark:hover:text-neutral-400"
                 target="_blank"
+                rel="noopener noreferrer"
               >
-                @rauchg
+                @dario_ristic
               </a>
             </span>
 
@@ -70,7 +73,15 @@ export function Header({ posts }: { posts: Post[] }) {
   );
 }
 
-function Views({ id, mutate, defaultValue }) {
+function Views({ 
+  id, 
+  mutate, 
+  defaultValue 
+}: { 
+  id: string; 
+  mutate: (data?: unknown) => void; 
+  defaultValue: string | null; 
+}) {
   const views = defaultValue;
   const didLogViewRef = useRef(false);
 

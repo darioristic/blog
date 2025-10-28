@@ -1,10 +1,11 @@
 import "./globals.css";
 
 import { Geist, Geist_Mono } from "next/font/google";
+
 import { Analytics } from "./analytics";
-import { Header } from "./header";
-import { Footer } from "./footer";
 import { doge } from "./doge";
+import { Footer } from "./footer";
+import { Header } from "./header";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -18,23 +19,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Guillermo Rauch's blog",
+  title: "Dario Ristic's blog",
   description:
-    "Guillermo Rauch is the CEO and founder of Vercel, a software engineer, and the creator of Next.js, Mongoose, Socket.io and other open source libraries.",
+    "Dario Ristic is a technology executive and consultant focused on DevOps, cloud infrastructure, and cross-functional teams.",
   openGraph: {
-    title: "Guillermo Rauchg's blog",
+    title: "Dario Ristic's blog",
     description:
-      "Guillermo Rauch is the CEO and founder of Vercel, a software engineer, and the creator of Next.js, Mongoose, Socket.io and other open source libraries.",
-    url: "https://rauchg.com",
-    siteName: "Guillermo Rauchg's blog",
+      "Dario Ristic is a technology executive and consultant focused on DevOps, cloud infrastructure, and cross-functional teams.",
+    url: "https://darioristic.com",
+    siteName: "Dario Ristic's blog",
     images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@rauchg",
-    creator: "@rauchg",
+    site: "@dario_ristic",
+    creator: "@dario_ristic",
   },
-  metadataBase: new URL("https://rauchg.com"),
+  metadataBase: new URL("https://darioristic.com"),
 };
 
 export const viewport = {
@@ -54,6 +55,7 @@ export default function RootLayout({
     >
       <head>
         <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Necessary for doge easter egg
           dangerouslySetInnerHTML={{
             __html: `(${doge.toString()})();`,
           }}

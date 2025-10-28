@@ -1,0 +1,134 @@
+export const metadata = {
+  title:
+    "Beyond the model: Why intelligent infrastructure is the next AI frontier",
+  description:
+    "How intelligent infrastructure and AI-aware control planes are enabling production-grade distributed AI inference at scale",
+  openGraph: {
+    title:
+      "Beyond the model: Why intelligent infrastructure is the next AI frontier",
+    description:
+      "How intelligent infrastructure and AI-aware control planes are enabling production-grade distributed AI inference at scale",
+    images: [
+      {
+        url: "/og/beyond-the-model-intelligent-infrastructure-ai-frontier",
+      },
+    ],
+  },
+};
+
+I've watched countless enterprises hit the same wall with AI: successful proof of concepts that never make it to production. The problem isn't the models or the data. The problem is the jump from a single server to distributed, production-grade AI inference—and traditional infrastructure just can't keep up.
+
+Here's what I've learned about why this happens and what the industry is building to solve it.
+
+## The single-server trap
+
+Most AI journeys start the same way. You get a large language model running on a single server—maybe it's your laptop or a beefy GPU in the cloud. It works. The PoC succeeds. Stakeholders are impressed.
+
+Then you need to scale. Suddenly, "working on one machine" becomes a completely different problem. This isn't just about adding more hardware. You need infrastructure that understands AI workloads are fundamentally different from web traffic.
+
+Imagine trying to run a global logistics network using a local delivery truck. The scaling challenge is that fundamental. AI inference has variable compute needs, unpredictable memory requirements, and networking constraints that traditional infrastructure was never designed to handle.
+
+## Why AI inference breaks traditional infrastructure
+
+The complexity comes down to two distinct phases of LLM inference that most people don't think about:
+
+**Prefill phase**: This is where your entire input prompt gets processed at once. It's compute-heavy, requiring serious GPU power to analyze the full context. Think of this as the "understanding" phase—the model is internalizing what you're asking it to do.
+
+**Decode phase**: This is where tokens are generated one at a time. It's less about compute and more about memory bandwidth. The model needs rapid access to its key-value cache to generate coherent responses efficiently.
+
+The problem? Most single-server deployments try to handle both phases on the same hardware. This creates bottlenecks. Your system can either be optimized for compute (prefill) or memory bandwidth (decode), but rarely both simultaneously.
+
+When you scale to hundreds of concurrent requests, these inefficiencies compound. You end up either underutilizing expensive GPU resources or hitting memory limits that crash your service. And forget about meeting service level objectives—the variability is just too unpredictable.
+
+## The collaborative solution: llm-d
+
+When vendors, cloud providers, and platform builders all face the same industry-wide challenge, the most effective approach is usually collaborative. This is exactly what's happening with the [llm-d project](https://llm-d.github.io/llm-d/), an open-source initiative that's bringing together Red Hat, IBM Research, Google, and NVIDIA to solve distributed AI inference at scale.
+
+Instead of dozens of organizations independently reinventing the wheel, llm-d is creating a shared blueprint—a "well-lit path" for managing AI workloads. The goal isn't to replace Kubernetes, but to add a specialized layer that understands the unique requirements of AI inference.
+
+## What makes llm-d different
+
+After examining the project closely, three features stand out as game-changers:
+
+### Semantic routing
+
+Traditional load balancers distribute requests based on simple metrics: server CPU, memory usage, current connections. Semantic routing goes deeper. The llm-d scheduler understands the actual computational requirements of each inference request—factors like how much of the model's key-value cache is being utilized.
+
+This means requests get routed to the most optimal instance based on real-time workload characteristics, not just generic availability metrics. The result? Better utilization of expensive GPU resources and significantly reduced over-provisioning costs.
+
+### Workload disaggregation
+
+This is where the prefill and decode separation really shines. llm-d breaks inference tasks into specialized components that can run on hardware optimized for specific phases.
+
+You can run prefill pods on GPU-optimized nodes designed for compute-heavy workloads. Decode pods can run on memory-optimized infrastructure. This granular control means you're not paying for GPU resources when you just need fast memory access, or vice versa.
+
+The cost savings can be substantial. Instead of maintaining monolithic infrastructure that tries to do everything reasonably well, you optimize each component for its specific task.
+
+### Support for emerging architectures
+
+The future of AI isn't just dense models like GPT-4. Mixture of experts (MoE) architectures require complex orchestration across multiple nodes, but they're more performant and cost-effective than dense models once you can deploy them correctly.
+
+llm-d's support for wide parallelism means you can efficiently use these sparse models. The project is bringing together best practices from high-performance computing and large-scale distributed systems, avoiding the rigid setups that make these technologies hard to adopt.
+
+## Why open source matters here
+
+The llm-d project is taking proven technologies—vLLM for model serving, Kubernetes for orchestration, inference gateways for scheduling—and creating a unified framework. It supports hardware from NVIDIA, AMD, and Intel, creating a flexible control plane that works across environments.
+
+This isn't about any single vendor winning. It's about establishing a standard that prevents lock-in and gives enterprises real choices about how they deploy AI infrastructure. The open-source approach means the community collaborates on solving hard operational challenges rather than competing on basic functionality.
+
+## What this means for you
+
+If you're an IT leader operationalizing AI today, the value extends beyond just the llm-d community. The development of an intelligent, AI-aware control plane is a direct response to production challenges organizations face right now.
+
+### Move beyond single-server thinking
+
+Scaling LLMs isn't about adding more machines—it's about implementing infrastructure that intelligently manages distributed workloads. You need systems that understand AI's unique patterns: unpredictable resource requirements, variable latency needs, complex hardware coordination.
+
+The organizations winning at AI aren't just using better models. They're using smarter infrastructure.
+
+### Leverage open standards
+
+The most robust AI platforms emerge from collaborative open source efforts, not proprietary silos. Choosing solutions aligned with open standards prevents vendor lock-in and provides flexibility as your AI initiatives evolve.
+
+You don't want to be trapped in one vendor's ecosystem. You want infrastructure that can adapt as the AI landscape changes.
+
+### Work with trusted partners
+
+You don't need to be a distributed systems expert or contribute directly to the llm-d project to benefit. The innovation happening in the open source community gets integrated into supported enterprise platforms.
+
+For example, [Red Hat AI](https://www.redhat.com/en/technologies/artificial-intelligence) provides a consistent foundation for deploying and managing AI at scale, built on the principles emerging from projects like llm-d. You get the innovation without needing an entire team of specialized engineers.
+
+## The infrastructure gap
+
+Here's what I see happening across enterprises: successful AI PoCs followed by production failures. The reason isn't poor model selection or inadequate data. It's infrastructure that treats AI workloads like any other application.
+
+Traditional infrastructure assumes:
+
+- Uniform request patterns
+- Predictable resource requirements
+- Stateless operations
+- Standard networking models
+
+AI inference challenges all of these assumptions. Requests vary dramatically in compute requirements. Memory needs fluctuate based on context length and model size. Networking patterns are fundamentally different when you're shuffling large tensors between nodes instead of serving static pages.
+
+### Why this matters now
+
+The bottleneck preventing organizations from moving from PoC to production is infrastructure, not algorithms. Most enterprises can demonstrate AI capabilities in isolated environments. Scaling to handle real workloads requires infrastructure that actually understands AI characteristics.
+
+Projects like llm-d aren't just adding features to Kubernetes—they're creating infrastructure designed specifically for AI. Think of it like how container orchestration transformed application deployment, but now applied specifically to AI inference.
+
+Organizations successfully scaling AI are those recognizing infrastructure as a strategic advantage, not operational overhead. They're investing in intelligent control planes that manage AI workloads, not just generic cloud resources.
+
+The future of enterprise AI depends on solid infrastructure foundations. The work of communities like llm-d is building that foundation, and platforms like [Red Hat AI](https://www.redhat.com/en/technologies/artificial-intelligence) can help put it into practice.
+
+## Looking ahead
+
+We're at an inflection point. The models are getting better. The tools are getting more accessible. But the infrastructure layer remains the largest gap between AI potential and AI reality.
+
+The organizations that bridge this gap successfully will be those that understand: deploying AI at scale isn't a scaling problem. It's an infrastructure problem requiring a fundamentally new class of solutions.
+
+The good news? The industry is collaborating on solving this. The llm-d project is a prime example. By bringing together hardware vendors, cloud providers, and platform builders, we're creating open standards that will power the next generation of AI applications.
+
+The infrastructure frontier is where the real competition will happen. Not in model architecture or training techniques—those are being solved. The bottleneck is operationalizing AI in production, and intelligent infrastructure is how we solve it.
+
+If you're evaluating AI platforms today, the question isn't whether they support your favorite model. It's whether they include intelligent infrastructure that can actually deploy that model at scale. Everything else follows from that foundation.

@@ -1,79 +1,94 @@
 {
   "posts": [
     {
+      "id": "beyond-the-model-intelligent-infrastructure-ai-frontier",
+      "date": "October 14, 2025",
+      "title": "Beyond the model: Why intelligent infrastructure is the next AI frontier"
+    },
+    {
       "id": "the-ai-cloud",
       "date": "Oct 17, 2025",
       "title": "The AI Cloud"
     },
     {
-      "id": "making-the-web-faster",
-      "date": "June 23, 2021",
-      "title": "Making the web. Faster."
+      "id": "accelerating-digital-transformation-with-cloud-native-technology",
+      "date": "April 25, 2024",
+      "title": "Accelerating Digital Transformation with Cloud-Native Technology"
     },
     {
-      "id": "next-for-vercel",
-      "date": "December 16, 2020",
-      "title": "Next for Vercel"
+      "id": "building-intelligent-applications-with-openshift-ai",
+      "date": "October 15, 2024",
+      "title": "Insights from my Lanaco TechHosted Conference Keynote"
     },
     {
-      "id": "books-people-reread",
-      "date": "August 2, 2020",
-      "title": "Books people re-read"
+      "id": "why-i-founded-a-cloud-native-company-as-a-teal-organization",
+      "date": "June 15, 2023",
+      "title": "Why I'm Founding Cloud Native as a Teal Organization"
     },
     {
-      "id": "develop-preview-test",
-      "date": "June 11, 2020",
-      "title": "Develop, preview, test"
+      "id": "why-idp-is-important-for-enterprise-organizations",
+      "date": "September 15, 2022",
+      "title": "Why IDP is Important for Enterprise Organizations"
     },
     {
-      "id": "static-hoisting",
-      "date": "May 2, 2020",
-      "title": "Static hoisting"
+      "id": "what-is-the-zone-of-genius",
+      "date": "September 15, 2021",
+      "title": "What is the Zone of Genius? Tips to Discover Yours!"
     },
     {
-      "id": "an-ode-to-code-golf",
-      "date": "April 26, 2020",
-      "title": "An ode to code golf"
+      "id": "crafting-an-effective-cloud-exit-strategy",
+      "date": "August 31, 2020",
+      "title": "Crafting an Effective Cloud Exit Strategy"
     },
     {
-      "id": "vercel",
-      "date": "April 21, 2020",
-      "title": "Vercel"
+      "id": "how-i-use-obsidian-for-my-second-brain",
+      "date": "January 15, 2017",
+      "title": "How I Use Obsidian for My Second Brain"
     },
     {
-      "id": "2019-in-review",
-      "date": "January 2, 2020",
-      "title": "2019 in review"
+      "id": "a-guide-to-building-your-digital-knowledge-hub",
+      "date": "January 21, 2017",
+      "title": "A Guide to Building Your Digital Knowledge Hub"
     },
     {
-      "id": "its-hard-to-forego-efficiency",
-      "date": "March 28, 2017",
-      "title": "It's hard to forego efficiency"
+      "id": "lean-business-model-canvas-in-more-detail",
+      "date": "February 2, 2017",
+      "title": "Lean Business Model Canvas – in more detail"
     },
     {
-      "id": "2016-in-review",
-      "date": "January 6, 2017",
-      "title": "2016 in review"
+      "id": "understanding-the-lean-business-model-for-startups",
+      "date": "June 15, 2016",
+      "title": "Understanding the Lean Business Model for Startups"
     },
     {
-      "id": "addressable-errors",
-      "date": "February 4, 2016",
-      "title": "Addressable errors"
+      "id": "the-who-what-why-and-how-of-cross-functional-teams",
+      "date": "March 15, 2015",
+      "title": "The Who, What, Why, and How of Cross-Functional Teams"
     },
     {
-      "id": "pure-ui",
-      "date": "July 13, 2015",
-      "title": "Pure UI"
+      "id": "key-roles-transforming-into-cross-functional-teams",
+      "date": "April 10, 2015",
+      "title": "Building Cross-Functional Teams: A Role-by-Role Guide"
     },
     {
-      "id": "ecmascript-6",
-      "date": "February 22, 2015",
-      "title": "ECMAScript 6"
+      "id": "the-ultimate-guide-to-devops",
+      "date": "Nov 15, 2014",
+      "title": "The Ultimate Guide to DevOps"
     },
     {
-      "id": "7-principles-of-rich-web-applications",
-      "date": "November 4, 2014",
-      "title": "7 principles of rich web applications"
+      "id": "how-to-establish-devops-in-your-company",
+      "date": "Nov 10, 2014",
+      "title": "How to Establish DevOps in Your Company"
+    },
+    {
+      "id": "designing-cloudex-opensource-cloud-platform",
+      "date": "November 15, 2013",
+      "title": "Designing CloudEx: Open Source Cloud Platform in a 2U Server"
+    },
+    {
+      "id": "building-sezamhosting-server-farm-opensolaris",
+      "date": "December 15, 2013",
+      "title": "Building SezamPro Hosting Server Farm with OpenSolaris"
     }
   ]
 }
