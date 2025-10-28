@@ -31,8 +31,9 @@ const data = [
   // 2015-2020: Container orchestration becomes mainstream
   { year: "2017", infrastructure: 45, virtual: 56, cloud: 68, orchestration: 48, ai: 0 },
   { year: "2020", infrastructure: 42, virtual: 54, cloud: 72, orchestration: 65, ai: 0 },
+  { year: "2021", infrastructure: 41, virtual: 53, cloud: 71, orchestration: 67, ai: 0 },
   
-  // 2020-2025: AI Platform Engineering begins
+  // 2022-2025: AI Platform Engineering begins
   { year: "2022", infrastructure: 40, virtual: 52, cloud: 70, orchestration: 68, ai: 8 },
   { year: "2023", infrastructure: 38, virtual: 50, cloud: 68, orchestration: 66, ai: 25 },
   { year: "2024", infrastructure: 37, virtual: 49, cloud: 67, orchestration: 64, ai: 42 },
