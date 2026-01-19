@@ -16,7 +16,19 @@ type Views = {
 };
 
 export const getPosts = async () => {
-  const allViews: null | Views = await redis.hgetall("views");
+  let allViews: null | Views = null;
+
+  try {
+    allViews = await Promise.race([
+      redis.hgetall("views"),
+      new Promise<null>((_, reject) =>
+        setTimeout(() => reject(new Error("Redis timeout")), 1500)
+      ),
+    ]) as Views;
+  } catch (e) {
+    console.error("Failed to fetch views:", e);
+  }
+
   const posts = postsData.posts.map((post): Post => {
     const views = Number(allViews?.[post.id] ?? 0);
     return {
