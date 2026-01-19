@@ -19,12 +19,14 @@ export const getPosts = async () => {
   let allViews: null | Views = null;
 
   try {
+    const start = Date.now();
     allViews = await Promise.race([
       redis.hgetall("views"),
       new Promise<null>((_, reject) =>
         setTimeout(() => reject(new Error("Redis timeout")), 1500)
       ),
     ]) as Views;
+    console.log(`Redis fetch took ${Date.now() - start}ms`);
   } catch (e) {
     console.error("Failed to fetch views:", e);
   }

@@ -111,7 +111,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="dark:text-gray-100 max-w-2xl m-auto" suppressHydrationWarning={true}>
+      <body className="text-neutral-900 dark:text-gray-100 max-w-2xl m-auto" suppressHydrationWarning={true}>
         <WebsiteStructuredData url="https://darioristic.com" />
         <PersonStructuredData />
         

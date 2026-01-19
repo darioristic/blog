@@ -10,7 +10,7 @@ export function Header() {
       <nav className="text-xs grow justify-end items-center flex">
         <Link
           href="/about"
-          className="group p-2 text-neutral-900 dark:text-neutral-300"
+          className="group p-2 text-neutral-900 dark:text-neutral-300 no-underline"
         >
 	  <span className="group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 rounded-xl py-0.5 px-1.5 inline-flex">
 		  About
@@ -20,7 +20,7 @@ export function Header() {
           href="https://x.com/dario_ristic"
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2 text-neutral-900 dark:text-neutral-300"
+          className="group inline-flex items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2 text-neutral-900 dark:text-neutral-300 no-underline"
         >
 	  <span className="group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 rounded-xl py-0.5 px-1.5 inline-flex items-center gap-1">
 	    <TweetIcon style={{ marginRight: 4 }} />

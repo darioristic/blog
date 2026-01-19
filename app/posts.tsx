@@ -35,7 +35,10 @@ function List({ posts }) {
 
         return (
           <li key={post.id} className="group">
-            <Link href={`/${new Date(post.date).getFullYear()}/${post.id}`}>
+            <Link 
+              href={`/${new Date(post.date).getFullYear()}/${post.id}`}
+              className="text-neutral-900 dark:text-gray-100 no-underline"
+            >
               <span
                 className={`flex
                 ${!firstOfYear ? "border-t-0" : ""}

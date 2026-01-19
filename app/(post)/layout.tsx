@@ -9,7 +9,7 @@ export default async function Layout({ children }) {
 
   return (
     <>
-      <article className="text-gray-800 dark:text-gray-300 mb-10">
+      <article className="text-neutral-900 dark:text-gray-300 mb-10">
         <HeaderWrapper posts={posts} />
 
         {children}

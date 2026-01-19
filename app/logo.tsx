@@ -12,9 +12,11 @@ export function Logo() {
       ) : (
         <Link
           href="/"
-          className="hover:bg-neutral-200 dark:hover:bg-neutral-700 p-2 rounded-2xl -ml-2 transition-[background-color]"
+          className="group p-2 no-underline hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-xl -ml-2 transition-[background-color]"
         >
-          Dario Ristic
+          <span className="group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 rounded-xl py-0.5 px-1.5 inline-flex">
+            Dario Ristic
+          </span>
         </Link>
       )}
     </span>

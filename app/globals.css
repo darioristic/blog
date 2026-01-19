@@ -17,6 +17,38 @@
     }
   }
 
+  /* Ensure links inherit text color in light mode */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  /* Ensure all text elements are visible in light mode */
+  h1, h2, h3, h4, h5, h6, p, span, div {
+    color: inherit;
+  }
+
+  /* Force text color in light mode - override any conflicting styles */
+  @media (prefers-color-scheme: light) {
+    a, h1, h2, h3, h4, h5, h6, span, div, p {
+      color: #171717 !important; /* neutral-900 */
+    }
+  }
+
+  /* Override for light mode when not in dark mode */
+  @media not (prefers-color-scheme: dark) {
+    a, h1, h2, h3, h4, h5, h6, span, div, p {
+      color: #171717 !important; /* neutral-900 */
+    }
+  }
+
   /* Global text selection styles */
   ::selection {
     @apply bg-black text-white;
