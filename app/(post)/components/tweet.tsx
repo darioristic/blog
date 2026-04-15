@@ -18,7 +18,7 @@ async function getAndCacheTweet(id: string): Promise<TweetType | undefined> {
     if (tweet && !tweet.tombstone) {
       // we populate the cache if we have a fresh tweet
       if (redis) {
-        await redis.set(`tweet:${id}`, tweet);
+        await redis.set(`tweet:${id}`, JSON.stringify(tweet));
       }
       return tweet;
     }
@@ -28,9 +28,17 @@ async function getAndCacheTweet(id: string): Promise<TweetType | undefined> {
 
   if (!redis) return undefined;
 
-  const cachedTweet: TweetType | null = await redis.get(`tweet:${id}`);
+  const cachedTweet = await redis.get(`tweet:${id}`);
 
-  // @ts-ignore
+  if (cachedTweet) {
+    try {
+      return typeof cachedTweet === "string"
+        ? (JSON.parse(cachedTweet) as TweetType)
+        : (cachedTweet as TweetType);
+    } catch {
+      // ignore error
+    }
+  }
 }
 
 export async function Tweet({ id, caption }: TweetArgs) {

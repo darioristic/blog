@@ -24,13 +24,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Dario Ristic's blog",
+  title: {
+    template: "%s | Dario Ristic",
+    default: "Dario Ristic's blog",
+  },
   description:
-    "Dario Ristic is a technology executive and consultant focused on DevOps, cloud infrastructure, and cross-functional teams.",
+    "Dario Ristic is a technology executive and consultant specializing in DevSecOps, cloud infrastructure, platform engineering, and high-performing cross-functional teams.",
   keywords: [
     "Dario Ristic",
     "cloud infrastructure",
-    "DevOps",
+    "DevSecOps",
     "cloud-native",
     "platform engineering",
     "technology blog",
@@ -45,7 +48,7 @@ export const metadata = {
   openGraph: {
     title: "Dario Ristic's blog",
     description:
-      "Dario Ristic is a technology executive and consultant focused on DevOps, cloud infrastructure, and cross-functional teams.",
+      "Dario Ristic is a technology executive and consultant specializing in DevSecOps, cloud infrastructure, platform engineering, and high-performing cross-functional teams.",
     url: "https://darioristic.com",
     siteName: "Dario Ristic's blog",
     type: "website",

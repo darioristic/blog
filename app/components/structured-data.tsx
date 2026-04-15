@@ -63,7 +63,7 @@ export function WebsiteStructuredData({ url }: { url: string }) {
     '@type': 'WebSite',
     name: "Dario Ristic's Blog",
     description:
-      'Technology executive and consultant focused on DevOps, cloud infrastructure, and cross-functional teams.',
+      'Dario Ristic is a technology executive and consultant specializing in DevSecOps, cloud infrastructure, platform engineering, and high-performing cross-functional teams.',
     url,
     publisher: {
       '@type': 'Person',

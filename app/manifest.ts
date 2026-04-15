@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Dario Ristic's Blog",
     short_name: 'Dario Blog',
     description:
-      'Technology executive and consultant focused on DevOps, cloud infrastructure, and cross-functional teams.',
+      'Dario Ristic is a technology executive and consultant specializing in DevSecOps, cloud infrastructure, platform engineering, and high-performing cross-functional teams.',
     start_url: '/',
     display: 'standalone',
     background_color: '#fcfcfc',

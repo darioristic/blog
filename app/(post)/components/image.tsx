@@ -28,19 +28,8 @@ export async function Image({
         const arrayBuffer = await response.arrayBuffer();
         imageBuffer = Buffer.from(arrayBuffer);
       } else {
-        if (
-          !process.env.CI &&
-          process.env.VERCEL_URL &&
-          process.env.NODE_ENV === "production"
-        ) {
-          const url = "https://" + process.env.VERCEL_URL + src + `?image_bot_bypass=${process.env.IMAGE_BOT_BYPASS_SECRET}`;
-          const response = await fetch(url);
-          const arrayBuffer = await response.arrayBuffer();
-          imageBuffer = Buffer.from(arrayBuffer);
-        } else {
-          const publicPath = join(process.cwd(), "public", src);
-          imageBuffer = await readFile(publicPath);
-        }
+        const publicPath = join(process.cwd(), "public", src);
+        imageBuffer = await readFile(publicPath);
       }
       
       if (!imageBuffer) {
