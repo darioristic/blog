@@ -29,35 +29,55 @@ ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "chown -R $SITE_USER:$SI
 # Run build and restart on server
 echo "Building and restarting application..."
 ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << EOF
-  cd $REMOTE_DIR
-  
-  # Install dependencies
-  echo "Installing dependencies..."
-  pnpm install --frozen-lockfile
+  # Fix permissions initially to ensure the site user can work
+  chown -R $SITE_USER:$SITE_USER $REMOTE_DIR
+  chmod -R 755 $REMOTE_DIR
 
-  # Build application
-  echo "Building application..."
-  # Set environment variables for build if needed, or rely on .env file if synced (but we excluded .env.local)
-  # Ideally, we should set env vars here or use a .env file on the server.
-  # For now, let's assume we might need to copy .env.local manually or set them.
-  # But since we are moving from Vercel, we need Redis credentials.
-  
-  # Export env vars for build
-  export NEXT_TELEMETRY_DISABLED=1
-  
-  pnpm build
+  # Run everything as the site user
+  sudo -u $SITE_USER -i << 'SUDO_EOF'
+    cd $REMOTE_DIR
+    
+    # Export env vars for the site user's session
+    export NEXT_TELEMETRY_DISABLED=1
+    export PATH=\$PATH:/usr/local/bin:/usr/bin:/bin # Ensure pnpm/node are in path
+    
+    # Install dependencies
+    echo "Installing dependencies..."
+    pnpm install --frozen-lockfile
 
-  # Start/Restart with PM2
-  echo "Starting with PM2..."
-  if pm2 list | grep -q "darioristic-web"; then
-    # Update environment and arguments (port)
-    pm2 delete darioristic-web
-    REDIS_URL="redis://127.0.0.1:6379" pm2 start npm --name "darioristic-web" -- start -- --port 3001
-  else
-    REDIS_URL="redis://127.0.0.1:6379" pm2 start npm --name "darioristic-web" -- start -- --port 3001
-  fi
-  
-  pm2 save
+    # Build application
+    echo "Building application..."
+    pnpm build
+
+    # Fix for standalone mode: copy static assets
+    echo "Copying static assets for standalone mode..."
+    mkdir -p .next/standalone/.next/
+    cp -r .next/static .next/standalone/.next/
+    cp -r public .next/standalone/
+
+    # Start/Restart with PM2
+    echo "Starting with PM2..."
+    pm2 delete $SITE_USER || true
+    
+    # Next.js standalone server needs PORT env var
+    REDIS_URL="redis://127.0.0.1:6379" PORT=3001 pm2 start .next/standalone/server.js --name $SITE_USER
+    
+    # Restart Umami
+    echo "Starting Umami..."
+    pm2 delete umami || true
+    cd $REMOTE_DIR/umami
+    mkdir -p .next/standalone/umami/public
+    cp -r public/* .next/standalone/umami/public/ 2>/dev/null || true
+    cp -r .next/static .next/standalone/umami/.next/ 2>/dev/null || true
+    
+    DATABASE_URL="mysql://umami:umami_password_secure_123@127.0.0.1:3306/umami" PORT=3002 BASE_PATH="/umami" pm2 start .next/standalone/umami/server.js --name umami
+    
+    pm2 save
+SUDO_EOF
+
+  # Final permission check as root
+  chown -R $SITE_USER:$SITE_USER $REMOTE_DIR
+  chmod -R 755 $REMOTE_DIR
 EOF
 
 echo "Deployment complete! App should be running on http://$SERVER_IP:3001"
