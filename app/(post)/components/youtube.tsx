@@ -14,25 +14,34 @@ export function YouTube({ videoId, title }: { videoId: string; title?: string })
   };
 
   return (
-    <div className="my-5" suppressHydrationWarning>
+    <div className="my-8" suppressHydrationWarning>
       <script
         id={`youtube-structured-data-${videoId}`}
         type="application/ld+json"
-        suppressHydrationWarning
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: Required for JSON-LD structured data
         dangerouslySetInnerHTML={{ __html: JSON.stringify(videoData) }}
       />
-      <div className="relative w-full aspect-video" suppressHydrationWarning>
+      <div className="relative w-full h-0 pb-[56.25%]" suppressHydrationWarning>
         <iframe
           src={embedUrl}
           title={title || 'YouTube video player'}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-          className="absolute top-0 left-0 w-full h-full"
-          style={{ border: 0 }}
+          className="absolute top-0 left-0 w-full h-full rounded-xl shadow-lg border-0"
           suppressHydrationWarning
         />
       </div>
+      {title && (
+        <p className="mt-3 text-sm text-neutral-500 text-center italic">
+          <a 
+            href={`https://www.youtube.com/watch?v=${videoId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+          >
+            Pogledaj na YouTube: {title}
+          </a>
+        </p>
+      )}
     </div>
   );
 }
