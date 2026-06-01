@@ -1,0 +1,85 @@
+export const metadata = {
+  title: "Digital product development in the AI era",
+  description:
+    "How AI is reshaping the way we build digital products—from discovery and design to engineering, delivery, and the teams behind them",
+  openGraph: {
+    title: "Digital product development in the AI era",
+    description:
+      "How AI is reshaping the way we build digital products—from discovery and design to engineering, delivery, and the teams behind them",
+    images: [
+      {
+        url: "/og/digital-product-development-in-the-ai-era",
+      },
+    ],
+  },
+};
+
+For most of the last two decades, building a digital product followed a familiar rhythm: discover, design, build, ship, iterate. The tools changed, the frameworks came and went, but the shape of the work stayed roughly the same. AI is now bending that shape. Not by replacing the people who build products, but by collapsing the distance between an idea and a working version of it.
+
+I've spent enough time around product teams to be skeptical of hype cycles. So let me be precise about what's actually changing—and what isn't.
+
+## The cost of a first version is collapsing
+
+The single biggest shift is economic. The cost of producing a first version of almost anything—a landing page, a prototype, an internal tool, a data pipeline, a draft of copy—has dropped by an order of magnitude.
+
+This sounds like a productivity story, and it is. But the more interesting consequence is strategic. When a prototype costs a day instead of a sprint, you stop treating prototypes as precious. You build five and throw away four. Discovery stops being a phase that ends and becomes a habit that runs continuously alongside delivery.
+
+The teams getting the most out of AI aren't the ones generating more code. They're the ones using cheap first versions to ask better questions earlier.
+
+## Discovery: from interviews to instrumentation
+
+Traditional discovery leaned heavily on talking to users and inferring intent. That still matters. But AI changes what's possible on both ends.
+
+On the input side, you can synthesize and cluster qualitative feedback at a scale that used to require a dedicated research team. Thousands of support tickets, reviews, and interview transcripts become a navigable map of user pain instead of a backlog nobody reads.
+
+On the output side, you can put a working artifact in front of users in the same week you formed the hypothesis. The feedback loop tightens from months to days. The risk is obvious: it's easy to mistake "we shipped something" for "we learned something." Speed without rigor just lets you be wrong faster.
+
+## Design: AI as a divergence engine
+
+Design has always had two modes—diverge to explore the space of possibilities, converge to commit to one. AI is extraordinarily good at divergence. Ask for twenty variations of a flow and you'll get them. Ask for the same component in five visual directions and they appear.
+
+What AI is not good at is taste, restraint, and knowing which constraint actually matters to *this* user in *this* context. That judgment is becoming the scarce, valuable part of design. The designer's role is shifting from producing artifacts to curating, critiquing, and directing them.
+
+The best designers I know treat AI like an intern with infinite energy and no judgment: tremendous leverage, but you never ship its work unreviewed.
+
+## Engineering: the abstraction moves up again
+
+Every generation of software has raised the level of abstraction—assembly to C, C to managed runtimes, servers to serverless. AI-assisted development is the next step up. Engineers increasingly describe intent and review generated implementations rather than writing every line by hand.
+
+This doesn't make engineering easier; it makes it different. The hard parts move. Writing a function is cheaper, but *specifying* the right behavior, reviewing generated code for subtle correctness and security issues, and maintaining systems that no single person wrote line-by-line all get harder.
+
+The durable skills are the ones that were always durable: systems thinking, debugging, knowing what good looks like, and the discipline to verify rather than trust. AI raises the floor for getting something working. It does not raise the ceiling for getting something *right*—that still comes from the team.
+
+## Delivery: continuous, but with new failure modes
+
+Continuous delivery already moved us toward shipping small changes constantly. AI accelerates the authoring of those changes, which is good—until you remember that throughput is bounded by your slowest verification step, not your fastest authoring step.
+
+If you can generate code ten times faster but your review, testing, and observability haven't kept up, you haven't built a faster team. You've built a faster way to ship bugs. The organizations that win here invest in the unglamorous parts: automated testing, strong CI, observability, and feedback loops that catch regressions before users do.
+
+This is the same lesson DevOps taught a decade ago, applied to a new bottleneck. The constraint just moved.
+
+## The team is still the product
+
+Here's the part the tooling conversation tends to miss. A digital product is not the sum of its features. It's the externalization of how a team thinks, communicates, and makes decisions. AI changes the tools, but it doesn't change that fundamental truth.
+
+If anything, it raises the stakes. When the cost of producing output drops, the differentiator becomes judgment—what to build, what to ignore, what tradeoffs to accept. Those are human, organizational decisions. A team with clarity of purpose and good decision-making will use AI to compound its advantage. A team without it will use AI to produce more of the wrong thing, faster.
+
+Cross-functional teams with real ownership matter more in this era, not less. The work increasingly happens at the seams—between what the model generates and what the product actually needs—and those seams are exactly where shared context and trust live.
+
+## What I'd actually do
+
+If I were leading a product organization through this shift, I'd focus on a few things:
+
+**Lower the cost of being wrong.** Build the infrastructure—prototyping, testing, observability—that makes experiments cheap and reversible. AI is most valuable when the cost of a failed experiment approaches zero.
+
+**Invest in judgment, not just tooling.** Buying every team a copilot is the easy part. Teaching them to ask better questions, review critically, and know when the AI is confidently wrong is the hard part, and it's where the real return lives.
+
+**Protect the verification layer.** As authoring speeds up, your review, testing, and quality practices become the binding constraint. Strengthen them deliberately instead of letting them erode under the pressure of faster output.
+
+**Keep humans accountable.** AI can draft, suggest, and accelerate. It cannot own an outcome. Make sure every decision still has a person who understands it and stands behind it.
+
+## Looking ahead
+
+I don't think AI replaces product teams. I think it changes the texture of the work—removing a lot of the mechanical effort and concentrating the value in judgment, taste, and decision-making. The mechanical parts of building software are being commoditized. What's left is the part that was always the hardest: deciding what's worth building and having the discipline to build it well.
+
+The teams that thrive won't be the ones with the most AI. They'll be the ones who used AI to spend more of their time on the questions that actually matter—and less on the mechanics that never did.

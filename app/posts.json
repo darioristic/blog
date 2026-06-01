@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "digital-product-development-in-the-ai-era",
+      "date": "November 20, 2025",
+      "title": "Digital Product Development in the AI Era"
+    },
+    {
       "id": "ai-platform-engineering",
       "date": "January 15, 2025",
       "title": "AI Platform Engineering"
