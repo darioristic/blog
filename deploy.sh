@@ -39,8 +39,9 @@ ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << EOF
     
     # Export env vars for the site user's session
     export NEXT_TELEMETRY_DISABLED=1
+    export CI=true # Avoid pnpm TTY abort when removing modules dir
     export PATH=\$PATH:/usr/local/bin:/usr/bin:/bin # Ensure pnpm/node are in path
-    
+
     # Install dependencies
     echo "Installing dependencies..."
     pnpm install --frozen-lockfile
