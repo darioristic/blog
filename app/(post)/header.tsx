@@ -8,6 +8,7 @@ import useSWR from "swr";
 import { ago } from "time-ago";
 
 import type { Post } from "@/app/get-posts";
+import { formatDate } from "@/app/format-date";
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
@@ -101,7 +102,7 @@ export function Header({ posts }: { posts: Post[] }) {
           </span>
 
           <span suppressHydrationWarning>
-            {displayPost.date} {isClient ? `(${ago(displayPost.date, true)} ago)` : ''}
+            {formatDate(displayPost.date)} {isClient ? `(${ago(displayPost.date, true)} ago)` : ''}
           </span>
         </span>
 
