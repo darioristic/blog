@@ -45,11 +45,11 @@ export async function GET() {
               </div>
               <div tw="flex mb-5" style={font("Geist Mono")}>
                 <span tw="text-gray-400 mr-3">&mdash;</span> Technology
-                executive and consultant
+                executive and entrepreneur
               </div>
               <div tw="flex mb-5" style={font("Geist Mono")}>
-                <span tw="text-gray-400 mr-3">&mdash;</span> DevSecOps and
-                platform engineering
+                <span tw="text-gray-400 mr-3">&mdash;</span> AI research and
+                product engineering
               </div>
               <div tw="flex" style={font("Geist Mono")}>
                 <span tw="text-gray-400 mr-3">&mdash;</span> Lives in Belgrade,
