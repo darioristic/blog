@@ -36,12 +36,14 @@ _retry() {
   local tool="$1"; shift
   local attempt=1 rc
   while :; do
+    # `|| rc=$?` matters: under `set -e` an unguarded failure exits the script
+    # before the next line can read $?, so the retry below never runs.
+    rc=0
     # shellcheck disable=SC2086
     case "$tool" in
-      ssh) command ssh $SSH_OPTS "$@" ;;
-      scp) command scp $SSH_OPTS "$@" ;;
+      ssh) command ssh $SSH_OPTS "$@" || rc=$? ;;
+      scp) command scp $SSH_OPTS "$@" || rc=$? ;;
     esac
-    rc=$?
     [ $rc -ne 255 ] && return $rc
     [ $attempt -ge 4 ] && return $rc
     sleep $((attempt * 3))
