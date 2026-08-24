@@ -5,14 +5,14 @@ export function Footer() {
     <footer className="p-6 pt-3 pb-6 flex text-xs text-center mt-3 dark:text-gray-400 text-gray-500 font-mono">
       <div className="grow text-left">
         Dario Ristic (
-        <A target="_blank" href="http://x.com/dario_ristic" rel="noopener noreferrer">
+        <A target="_blank" href="https://twitter.com/dario_ristic">
           @dario_ristic
         </A>
         )
       </div>
       <div>
-        <A href="mailto:darioristic@gmail.com" rel="noopener">
-          Let's Work
+        <A target="_blank" href="https://github.com/darioristic/personal-web-2025">
+          Source
         </A>
       </div>
     </footer>

@@ -28,14 +28,30 @@ export async function Image({
         const arrayBuffer = await response.arrayBuffer();
         imageBuffer = Buffer.from(arrayBuffer);
       } else {
-        const publicPath = join(process.cwd(), "public", src);
-        imageBuffer = await readFile(publicPath);
+        if (
+          !process.env.CI &&
+          process.env.VERCEL_URL &&
+          process.env.NODE_ENV === "production"
+        ) {
+          const url =
+            "https://" +
+            process.env.VERCEL_URL +
+            src +
+            `?image_bot_bypass=${encodeURIComponent(process.env.IMAGE_BOT_BYPASS_SECRET!)}&x-vercel-protection-bypass=${encodeURIComponent(process.env.VERCEL_AUTOMATION_BYPASS_SECRET!)}`;
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch image: ${response.status}`);
+          }
+          const arrayBuffer = await response.arrayBuffer();
+          imageBuffer = Buffer.from(arrayBuffer);
+        } else {
+          imageBuffer = await readFile(
+            new URL(
+              join(import.meta.url, "..", "..", "..", "..", "public", src)
+            ).pathname
+          );
+        }
       }
-      
-      if (!imageBuffer) {
-        throw new Error(`Could not load image from ${src}`);
-      }
-      
       const computedSize = sizeOf(imageBuffer);
       if (
         computedSize.width === undefined ||
@@ -77,4 +93,3 @@ export async function Image({
     );
   }
 }
-

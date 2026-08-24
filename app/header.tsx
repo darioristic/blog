@@ -1,6 +1,5 @@
-import Link from "next/link";
-
 import { Logo } from "./logo";
+import Link from "next/link";
 
 export function Header() {
   return (
@@ -10,7 +9,7 @@ export function Header() {
       <nav className="text-xs grow justify-end items-center flex">
         <Link
           href="/about"
-          className="group p-2 text-neutral-900 dark:text-neutral-300 no-underline"
+          className="group p-2"
         >
 	  <span className="group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 rounded-xl py-0.5 px-1.5 inline-flex">
 		  About
@@ -19,8 +18,7 @@ export function Header() {
         <a
           href="https://x.com/dario_ristic"
           target="_blank"
-          rel="noopener noreferrer"
-          className="group inline-flex items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2 text-neutral-900 dark:text-neutral-300 no-underline"
+          className="group inline-flex items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
         >
 	  <span className="group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 rounded-xl py-0.5 px-1.5 inline-flex items-center gap-1">
 	    <TweetIcon style={{ marginRight: 4 }} />
@@ -32,8 +30,8 @@ export function Header() {
   );
 }
 
-function TweetIcon(props: React.SVGProps<SVGSVGElement>) {
+function TweetIcon(props: any) {
   return (
-    <svg viewBox="0 0 24 24" className="inline-flex fill-current" width={12} height={12} {...props}><title>Twitter/X</title><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
+    <svg viewBox="0 0 24 24" className="inline-flex fill-current" width={12} height={12}><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
   );
 }

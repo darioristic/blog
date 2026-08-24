@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "media",
@@ -13,10 +15,4 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true,
   },
-  corePlugins: {
-    // Disable unused Tailwind features to reduce bundle size
-    preflight: true,
-  },
-  // Optimize CSS output
-  important: false,
 };

@@ -35,6 +35,9 @@ done
 
 [ -d "$SRC/posts" ] || { echo "no posts/ next to this script -- run it from inside a content backup" >&2; exit 1; }
 [ -d "$TARGET/app" ] || { echo "$TARGET does not look like a checkout of the blog (no app/)" >&2; exit 1; }
+# Absolute from here on: the copy loop runs with its cwd inside the backup, so
+# a relative target would resolve against the backup rather than the checkout.
+TARGET="$(cd "$TARGET" && pwd)"
 
 COUNT="$(find "$SRC/posts" -name page.mdx | wc -l | tr -d ' ')"
 echo "source : $SRC"
@@ -56,15 +59,15 @@ mkdir -p "$TARGET/app/(post)"
 
 # Copy the post trees, dropping the meta.json sidecars -- they exist for the
 # backup's benefit, not the site's.
-( cd "$SRC/posts" && find . -type f ! -name meta.json -print0 ) \
-  | ( cd "$SRC/posts" && cpio -0 -pdm --quiet "$TARGET/app/(post)" 2>/dev/null ) \
-  || {
-    # cpio is not everywhere; fall back to a plain copy loop.
-    while IFS= read -r -d '' f; do
-      mkdir -p "$TARGET/app/(post)/$(dirname "$f")"
-      cp "$SRC/posts/$f" "$TARGET/app/(post)/$f"
-    done < <(cd "$SRC/posts" && find . -type f ! -name meta.json -print0)
-  }
+COPIED=0
+while IFS= read -r -d '' f; do
+  f="${f#./}"
+  mkdir -p "$TARGET/app/(post)/$(dirname "$f")"
+  cp "$SRC/posts/$f" "$TARGET/app/(post)/$f"
+  COPIED=$((COPIED + 1))
+done < <(cd "$SRC/posts" && find . -type f ! -name meta.json -print0)
+echo "  copied $COPIED post file(s)"
+[ "$COPIED" -gt 0 ] || { echo "copied nothing -- refusing to continue" >&2; exit 1; }
 
 [ -f "$SRC/about/page.mdx" ] && { mkdir -p "$TARGET/app/about"; cp "$SRC/about/page.mdx" "$TARGET/app/about/page.mdx"; }
 

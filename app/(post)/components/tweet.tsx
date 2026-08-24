@@ -1,8 +1,14 @@
-import { type ReactNode } from "react";
+import { type ReactNode, Suspense } from "react";
 import { Tweet as TweetType, getTweet } from "react-tweet/api";
+import {
+  EmbeddedTweet,
+  TweetNotFound,
+  TweetSkeleton,
+  type TweetProps,
+} from "react-tweet";
 import redis from "@/app/redis";
 import { Caption } from "./caption";
-import { TweetClient } from "./tweet-client";
+import "./tweet.css";
 
 interface TweetArgs {
   id: string;
@@ -18,7 +24,7 @@ async function getAndCacheTweet(id: string): Promise<TweetType | undefined> {
     if (tweet && !tweet.tombstone) {
       // we populate the cache if we have a fresh tweet
       if (redis) {
-        await redis.set(`tweet:${id}`, JSON.stringify(tweet));
+        await redis.set(`tweet:${id}`, tweet);
       }
       return tweet;
     }
@@ -28,26 +34,36 @@ async function getAndCacheTweet(id: string): Promise<TweetType | undefined> {
 
   if (!redis) return undefined;
 
-  const cachedTweet = await redis.get(`tweet:${id}`);
+  const cachedTweet: TweetType | null = await redis.get(`tweet:${id}`);
 
-  if (cachedTweet) {
-    try {
-      return typeof cachedTweet === "string"
-        ? (JSON.parse(cachedTweet) as TweetType)
-        : (cachedTweet as TweetType);
-    } catch {
-      // ignore error
-    }
-  }
+  // @ts-ignore
+  if (!cachedTweet || cachedTweet.tombstone) return undefined;
+
+  return cachedTweet;
 }
 
-export async function Tweet({ id, caption }: TweetArgs) {
-  const tweet = await getAndCacheTweet(id);
+const TweetContent = async ({ id, components }: TweetProps) => {
+  const tweet = id ? await getAndCacheTweet(id) : undefined;
 
+  if (!tweet) {
+    return <TweetNotFound />;
+  }
+
+  return <EmbeddedTweet tweet={tweet} components={components} />;
+};
+
+export const ReactTweet = (props: TweetProps) => (
+  <Suspense fallback={<TweetSkeleton />}>
+    {/* @ts-ignore: Async components are valid in the app directory */}
+    <TweetContent {...props} />
+  </Suspense>
+);
+
+export async function Tweet({ id, caption }: TweetArgs) {
   return (
     <div className="tweet my-6">
       <div className={`flex justify-center`}>
-        <TweetClient tweet={tweet} />
+        <ReactTweet id={id} />
       </div>
       {caption && <Caption>{caption}</Caption>}
     </div>

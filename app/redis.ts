@@ -1,13 +1,11 @@
 import { Redis } from "@upstash/redis";
 
-// Speaks the Upstash REST protocol, but the URL points at our own proxy
-// (infra/redis-http) in front of the Redis on the origin server.
 const redis =
-  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
-    ? new Redis({
-        url: process.env.UPSTASH_REDIS_REST_URL,
-        token: process.env.UPSTASH_REDIS_REST_TOKEN,
-      })
-    : null;
+  process.env.SKIP_VIEWS === "1" || !process.env.KV_REST_API_TOKEN
+    ? null
+    : new Redis({
+        url: process.env.KV_REST_API_URL!,
+        token: process.env.KV_REST_API_TOKEN,
+      });
 
 export default redis;

@@ -7,45 +7,13 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
     color-scheme: light;
-    @apply bg-[#fcfcfc] text-neutral-900;
+    @apply bg-[#fcfcfc];
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
       color-scheme: dark;
-      @apply bg-[#1C1C1C] text-gray-100;
-    }
-  }
-
-  /* Ensure links inherit text color in light mode */
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-  }
-
-  /* Ensure all text elements are visible in light mode */
-  h1, h2, h3, h4, h5, h6, p, span, div {
-    color: inherit;
-  }
-
-  /* Force text color in light mode - override any conflicting styles */
-  @media (prefers-color-scheme: light) {
-    a, h1, h2, h3, h4, h5, h6, span, div, p {
-      color: #171717 !important; /* neutral-900 */
-    }
-  }
-
-  /* Override for light mode when not in dark mode */
-  @media not (prefers-color-scheme: dark) {
-    a, h1, h2, h3, h4, h5, h6, span, div, p {
-      color: #171717 !important; /* neutral-900 */
+      @apply bg-[#1C1C1C];
     }
   }
 

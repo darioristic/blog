@@ -12,7 +12,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 export function Posts({ posts: initialPosts }) {
   const { data: posts } = useSWR("/api/posts", fetcher, {
     fallbackData: initialPosts,
-    refreshInterval: 30000,
+    refreshInterval: 5000,
   });
 
   return (
@@ -35,10 +35,7 @@ function List({ posts }) {
 
         return (
           <li key={post.id} className="group">
-            <Link 
-              href={`/${new Date(post.date).getFullYear()}/${post.id}`}
-              className="text-neutral-900 dark:text-gray-100 no-underline"
-            >
+            <Link href={`/${new Date(post.date).getFullYear()}/${post.id}`}>
               <span
                 className={`flex
                 ${!firstOfYear ? "border-t-0" : ""}
@@ -51,18 +48,18 @@ function List({ posts }) {
                   }`}
                 >
                   {firstOfYear && (
-                    <span className="w-10 md:w-14 inline-block self-start shrink-0 text-neutral-900 text-xs dark:text-neutral-300 mt-0.5">
+                    <span className="w-10 md:w-14 inline-block self-start shrink-0 text-neutral-500 text-xs dark:text-neutral-500 mt-0.5">
                       {year}
                     </span>
                   )}
 
-                  <span className="grow text-neutral-900 dark:text-gray-100">
+                  <span className="grow dark:text-gray-100">
                     <span className="group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 transition-all rounded-xl py-0.5 px-1.5">
                       {post.title}
                     </span>
                   </span>
 
-                  <span className="text-neutral-900 dark:text-neutral-300 text-xs mt-0.5" suppressHydrationWarning>
+                  <span className="text-neutral-500 dark:text-neutral-500 text-xs mt-0.5">
                     {post.viewsFormatted}
                   </span>
                 </span>

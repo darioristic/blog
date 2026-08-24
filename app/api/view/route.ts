@@ -35,7 +35,6 @@ export async function GET(req: NextRequest) {
   }
 
   if (!redis) {
-    console.error("[API/view] Redis client not initialized");
     return NextResponse.json({
       ...post,
       views: 0,
@@ -43,30 +42,19 @@ export async function GET(req: NextRequest) {
     });
   }
 
-  try {
-    if (url.searchParams.get("incr") != null) {
-      const views = await redis.hincrby("views", id, 1);
-      console.log(`[API/view] Incremented views for ${id}: ${views}`);
-      return NextResponse.json({
-        ...post,
-        views,
-        viewsFormatted: commaNumber(views),
-      });
-    } else {
-      const views = (await redis.hget("views", id)) ?? 0;
-      console.log(`[API/view] Fetched views for ${id}: ${views}`);
-      return NextResponse.json({
-        ...post,
-        views,
-        viewsFormatted: commaNumber(Number(views)),
-      });
-    }
-  } catch (error) {
-    console.error(`[API/view] Error accessing Redis for ${id}:`, error);
+  if (url.searchParams.get("incr") != null) {
+    const views = await redis.hincrby("views", id, 1);
     return NextResponse.json({
       ...post,
-      views: 0,
-      viewsFormatted: "0",
+      views,
+      viewsFormatted: commaNumber(views),
+    });
+  } else {
+    const views = (await redis.hget("views", id)) ?? 0;
+    return NextResponse.json({
+      ...post,
+      views,
+      viewsFormatted: commaNumber(Number(views)),
     });
   }
 }

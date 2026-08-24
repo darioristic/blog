@@ -7,7 +7,7 @@ import { join } from "path";
 import commaNumber from "comma-number";
 
 // Image
-const darioPhoto = toArrayBuffer(
+const authorPhoto = toArrayBuffer(
   readFileSync(join(process.cwd(), "public/images/dario_ristic.png"))
 );
 
@@ -35,7 +35,7 @@ export async function GET() {
                 tw="h-74"
                 alt="Dario Ristic"
                 // @ts-ignore
-                src={darioPhoto}
+                src={authorPhoto}
               />
             </div>
 
@@ -44,16 +44,16 @@ export async function GET() {
                 Dario Ristic
               </div>
               <div tw="flex mb-5" style={font("Geist Mono")}>
-                <span tw="text-gray-400 mr-3">&mdash;</span> CEO and Founder of
-                Cloud Native d.o.o.
+                <span tw="text-gray-400 mr-3">&mdash;</span> Technology
+                executive and consultant
               </div>
               <div tw="flex mb-5" style={font("Geist Mono")}>
-                <span tw="text-gray-400 mr-3">&mdash;</span> Technology Executive
-                & Cloud Evangelist
+                <span tw="text-gray-400 mr-3">&mdash;</span> DevSecOps, cloud
+                infrastructure, platform engineering
               </div>
               <div tw="flex" style={font("Geist Mono")}>
-                <span tw="text-gray-400 mr-3">&mdash;</span> Focus: DevOps,
-                Cloud-Native, Digital Transformation
+                <span tw="text-gray-400 mr-3">&mdash;</span> Lives in Belgrade,
+                Serbia
               </div>
             </div>
           </div>

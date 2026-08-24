@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "es2015",
     "lib": [
       "dom",
       "dom.iterable",
-      "ES2022",
-      "ESNext"
+      "esnext"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -38,9 +37,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-, "app/(post)/2014/the-ultimate-guide-to-devops/page.mdx"  ],
+  ],
   "exclude": [
-    "node_modules",
-    "umami"
+    "node_modules"
   ]
 }

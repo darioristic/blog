@@ -2,7 +2,6 @@ export const revalidate = 300;
 
 import { ImageResponse } from "next/og";
 import { getPosts } from "@/app/get-posts";
-import { formatDate } from "@/app/format-date";
 import { readFileSync } from "fs";
 import { join } from "path";
 
@@ -68,7 +67,7 @@ export async function GET(_req: Request, props) {
             tw="mt-5 flex text-3xl text-gray-500"
             style={font("Geist Mono")}
           >
-            {formatDate(post.date)}{post.views >= 10000 ? ` – ${post.viewsFormatted} views` : ''}
+            {post.date}{post.views >= 10000 ? ` – ${post.viewsFormatted} views` : ''}
           </div>
         </main>
       </div>
@@ -98,10 +97,6 @@ export async function GET(_req: Request, props) {
           weight: 400,
         },
       ],
-      headers: {
-        'Cache-Control': 'public, max-age=31536000, immutable',
-        'Content-Type': 'image/png',
-      },
     }
   );
 }
