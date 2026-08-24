@@ -1,20 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Spartan helmet">
-  <mask id="helmet">
-    <rect width="64" height="64" fill="black"/>
-    <!-- the silhouette is drawn at its original scale, then inset so the white
-         mark sits inside the black square instead of bleeding off its edges -->
-    <g transform="translate(5.6 5.2) scale(0.825)">
-      <!-- crest and bell union into one silhouette... -->
-      <path fill="white" d="M7 29C8 13 19 1 32 1s24 12 25 28z"/>
-      <path fill="white" d="M32 14c12 0 21 11 21 25v5c0 7-3 12-8 15l-3-14h-6l-1 14h-6l-1-14h-6l-3 14c-5-3-8-8-8-15v-5c0-14 9-25 21-25z"/>
-      <!-- ...then split by a stroke of constant width, run past both edges so its
-           end caps land outside the shape instead of denting it -->
-      <path fill="none" stroke="black" stroke-width="4" stroke-linecap="butt"
-            d="M7 48C7 25 18 12 32 12s25 13 25 36"/>
-      <path fill="black" d="M17 34l11-3v9l-11 2z"/>
-      <path fill="black" d="M47 34l-11-3v9l11 2z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Jolly Roger">
+  <defs>
+    <!-- one bone, drawn as a bar plus four knobs; the pieces are stroked as a
+         group and then refilled so only the outer silhouette keeps its outline -->
+    <g id="bone">
+      <rect x="-21" y="-3.6" width="42" height="7.2" rx="3.6"/>
+      <circle cx="-21" cy="-3.8" r="4.4"/><circle cx="-21" cy="3.8" r="4.4"/>
+      <circle cx="21" cy="-3.8" r="4.4"/><circle cx="21" cy="3.8" r="4.4"/>
     </g>
-  </mask>
+    <g id="skull">
+      <ellipse cx="32" cy="24" rx="15.5" ry="14"/>
+      <rect x="23.5" y="32" width="17" height="12.5" rx="3.5"/>
+    </g>
+  </defs>
+
   <rect width="64" height="64" fill="#111111"/>
-  <rect width="64" height="64" fill="#ffffff" mask="url(#helmet)"/>
+
+  <!-- the mark is inset so it never touches the edges of the plate -->
+  <g transform="translate(4.8 3) scale(0.85)">
+    <g stroke="#111111" stroke-width="3.2" stroke-linejoin="round">
+      <use href="#bone" transform="translate(32 45) rotate(22)" fill="#111111"/>
+      <use href="#bone" transform="translate(32 45) rotate(22)" fill="#ffffff" stroke="none"/>
+      <use href="#bone" transform="translate(32 45) rotate(-22)" fill="#111111"/>
+      <use href="#bone" transform="translate(32 45) rotate(-22)" fill="#ffffff" stroke="none"/>
+      <use href="#skull" fill="#111111"/>
+      <use href="#skull" fill="#ffffff" stroke="none"/>
+    </g>
+
+    <g fill="#111111">
+      <circle cx="25.4" cy="23" r="5.3"/>
+      <circle cx="38.6" cy="23" r="5.3"/>
+      <path d="M32 28.5l3.4 5.5h-6.8z"/>
+      <rect x="28.4" y="34" width="2.4" height="10.5"/>
+      <rect x="33.2" y="34" width="2.4" height="10.5"/>
+    </g>
+  </g>
 </svg>
