@@ -48,8 +48,8 @@ export async function GET() {
                 executive and consultant
               </div>
               <div tw="flex mb-5" style={font("Geist Mono")}>
-                <span tw="text-gray-400 mr-3">&mdash;</span> DevSecOps, cloud
-                infrastructure, platform engineering
+                <span tw="text-gray-400 mr-3">&mdash;</span> DevSecOps and
+                platform engineering
               </div>
               <div tw="flex" style={font("Geist Mono")}>
                 <span tw="text-gray-400 mr-3">&mdash;</span> Lives in Belgrade,
