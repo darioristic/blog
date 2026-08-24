@@ -1,5 +1,7 @@
 import "./globals.css";
 
+import type { Metadata } from "next";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "./analytics";
 import { Header } from "./header";
@@ -17,7 +19,7 @@ const geistMono = Geist_Mono({
   fallback: ["ui-monospace", "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", "monospace"]
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Dario Ristić's blog",
   description:
     "Dario Ristić is a technology executive and entrepreneur from Belgrade, Serbia. He leads Platforma, researching and building AI-native services, platforms, and hardware-enabled products.",
@@ -28,11 +30,34 @@ export const metadata = {
     url: "https://darioristic.com",
     siteName: "Dario Ristić's blog",
     images: ["/opengraph-image"],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
     site: "@dario_ristic",
     creator: "@dario_ristic",
+  },
+  authors: [{ name: "Dario Ristić", url: "https://darioristic.com" }],
+  creator: "Dario Ristić",
+  publisher: "Dario Ristić",
+  // inherited by every page that does not set its own `alternates`, so the
+  // feed stays discoverable site-wide
+  alternates: {
+    types: {
+      "application/atom+xml": "https://darioristic.com/atom",
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   metadataBase: new URL("https://darioristic.com"),
 };

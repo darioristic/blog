@@ -5,6 +5,8 @@ import { useEffect, useRef } from "react";
 import { ago } from "time-ago";
 import useSWR from "swr";
 import type { Post } from "@/app/get-posts";
+import { JsonLd, PERSON, personId } from "@/app/json-ld";
+import { toISODate, year } from "@/app/date";
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
@@ -27,8 +29,30 @@ export function Header({ posts }: { posts: Post[] }) {
 
   if (initialPost == null) return <></>;
 
+  const url = `https://darioristic.com/${year(initialPost.date)}/${initialPost.id}`;
+
   return (
     <>
+      <JsonLd
+        data={[
+          PERSON,
+          {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "@id": url,
+            mainEntityOfPage: url,
+            url,
+            headline: initialPost.title,
+            datePublished: toISODate(initialPost.date),
+            image: `https://darioristic.com/og/${initialPost.id}`,
+            inLanguage: "en",
+            author: { "@id": personId },
+            publisher: { "@id": personId },
+            isPartOf: { "@id": "https://darioristic.com/#blog" },
+          },
+        ]}
+      />
+
       <h1 className="text-2xl font-bold mb-1 dark:text-gray-100">
         {post.title}
       </h1>

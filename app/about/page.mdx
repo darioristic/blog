@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import darioPhoto from "../../public/images/dario_ristic.png";
+import { JsonLd, PERSON, personId } from "../json-ld";
 
 export const metadata = {
   title: "About - Dario Ristić",
@@ -39,8 +40,25 @@ export const metadata = {
   },
   alternates: {
     canonical: "https://darioristic.com/about",
+    types: {
+      "application/atom+xml": "https://darioristic.com/atom",
+    },
   },
 };
+
+export const profileJsonLd = [
+  PERSON,
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    url: "https://darioristic.com/about",
+    name: "About - Dario Ristić",
+    mainEntity: { "@id": personId },
+    inLanguage: "en",
+  },
+];
+
+<JsonLd data={profileJsonLd} />
 
 # About
 
