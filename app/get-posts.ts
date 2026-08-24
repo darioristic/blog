@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import postsData from "./posts.json";
 import redis from "./redis";
 import commaNumber from "comma-number";
@@ -15,10 +16,21 @@ type Views = {
   [key: string]: string;
 };
 
-export const getPosts = async () => {
-  const allViews: null | Views = redis ? await redis.hgetall("views") : null;
+const readViews = async (): Promise<null | Views> =>
+  redis ? await redis.hgetall("views") : null;
 
-  const posts = postsData.posts.map((post): Post => {
+// An uncached fetch during render opts the route out of static generation, so
+// reading Redis directly turns every page into a function invocation plus a
+// round trip to the origin server. Caching it for the same 300s the pages
+// already declare as their revalidate window keeps them prerendered and
+// CDN-cacheable; the client-side SWR poll is what keeps the numbers moving.
+const readViewsCached = unstable_cache(readViews, ["views"], {
+  revalidate: 300,
+  tags: ["views"],
+});
+
+const withViews = (allViews: null | Views): Post[] =>
+  postsData.posts.map((post): Post => {
     const views = Number(allViews?.[post.id] ?? 0);
     return {
       ...post,
@@ -26,5 +38,9 @@ export const getPosts = async () => {
       viewsFormatted: commaNumber(views),
     };
   });
-  return posts;
-};
+
+/** For rendering pages. Cached, so the page stays statically generated. */
+export const getPosts = async () => withViews(await readViewsCached());
+
+/** For /api/posts, which SWR polls -- must not serve a cached snapshot. */
+export const getPostsLive = async () => withViews(await readViews());

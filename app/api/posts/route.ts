@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getPosts } from "../../get-posts";
+import { getPostsLive } from "../../get-posts";
 
 export async function GET() {
-  return NextResponse.json(await getPosts());
+  return NextResponse.json(await getPostsLive());
 }
