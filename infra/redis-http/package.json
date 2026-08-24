@@ -1,0 +1,11 @@
+{
+  "name": "redis-http-proxy",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Upstash-REST-compatible HTTP proxy in front of the self-hosted Redis",
+  "main": "server.mjs",
+  "dependencies": {
+    "ioredis": "^5.10.0"
+  }
+}

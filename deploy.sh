@@ -46,9 +46,9 @@ ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << EOF
     echo "Installing dependencies..."
     pnpm install --frozen-lockfile
 
-    # Build application
+    # Build application (standalone output is gated on SELF_HOST)
     echo "Building application..."
-    pnpm build
+    SELF_HOST=1 pnpm build
 
     # Fix for standalone mode: copy static assets
     echo "Copying static assets for standalone mode..."
@@ -61,7 +61,10 @@ ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << EOF
     pm2 delete $SITE_USER || true
     
     # Next.js standalone server needs PORT env var
-    REDIS_URL="redis://127.0.0.1:6379" PORT=3001 pm2 start .next/standalone/server.js --name $SITE_USER
+    # Views go through the local redis-http proxy, same protocol as on Vercel
+    UPSTASH_REDIS_REST_URL="http://127.0.0.1:8079" \
+    UPSTASH_REDIS_REST_TOKEN="$SRH_TOKEN" \
+    PORT=3001 pm2 start .next/standalone/server.js --name $SITE_USER
     
     # Restart Umami
     echo "Starting Umami..."

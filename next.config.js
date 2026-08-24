@@ -1,7 +1,9 @@
 const withMDX = require("@next/mdx")();
 
 module.exports = withMDX({
-  output: "standalone",
+  // Vercel builds its own output; standalone is only for the self-hosted
+  // fallback on the origin server (see deploy.sh).
+  output: process.env.SELF_HOST === "1" ? "standalone" : undefined,
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   experimental: {
     mdxRs: true,

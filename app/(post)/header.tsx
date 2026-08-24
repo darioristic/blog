@@ -62,7 +62,7 @@ export function Header({ posts }: { posts: Post[] }) {
     fetcher,
     {
       fallbackData: initialPost,
-      refreshInterval: 5000,
+      refreshInterval: 30000,
     }
   );
 

@@ -12,7 +12,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 export function Posts({ posts: initialPosts }) {
   const { data: posts } = useSWR("/api/posts", fetcher, {
     fallbackData: initialPosts,
-    refreshInterval: 5000,
+    refreshInterval: 30000,
   });
 
   return (

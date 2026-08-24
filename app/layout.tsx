@@ -86,9 +86,6 @@ export default function RootLayout({
       suppressHydrationWarning={true}
     >
       <head>
-        {/* Preconnect to Google Fonts for faster font loading */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <style
           dangerouslySetInnerHTML={{
             __html: `
