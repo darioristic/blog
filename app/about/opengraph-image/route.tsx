@@ -33,7 +33,7 @@ export async function GET() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 tw="h-74"
-                alt="Dario Ristic"
+                alt="Dario Ristić"
                 // @ts-ignore
                 src={authorPhoto}
               />
@@ -41,7 +41,7 @@ export async function GET() {
 
             <div tw="flex flex-col px-10 grow text-[28px] h-70 justify-center">
               <div tw="text-[64px] mb-7" style={font("Geist Medium")}>
-                Dario Ristic
+                Dario Ristić
               </div>
               <div tw="flex mb-5" style={font("Geist Mono")}>
                 <span tw="text-gray-400 mr-3">&mdash;</span> Technology

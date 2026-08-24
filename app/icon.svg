@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Spartan helmet">
+  <style>
+    .mark { fill: #111111 }
+    @media (prefers-color-scheme: dark) { .mark { fill: #ffffff } }
+  </style>
+  <mask id="helmet">
+    <rect width="64" height="64" fill="black"/>
+    <!-- crest and bell union into one silhouette... -->
+    <path fill="white" d="M7 29C8 13 19 1 32 1s24 12 25 28z"/>
+    <path fill="white" d="M32 14c12 0 21 11 21 25v5c0 7-3 12-8 15l-3-14h-6l-1 14h-6l-1-14h-6l-3 14c-5-3-8-8-8-15v-5c0-14 9-25 21-25z"/>
+    <!-- ...then split by a stroke of constant width, run past both edges so its
+         end caps land outside the shape instead of denting it -->
+    <path fill="none" stroke="black" stroke-width="4" stroke-linecap="butt"
+          d="M7 48C7 25 18 12 32 12s25 13 25 36"/>
+    <path fill="black" d="M17 34l11-3v9l-11 2z"/>
+    <path fill="black" d="M47 34l-11-3v9l11 2z"/>
+  </mask>
+  <rect class="mark" width="64" height="64" mask="url(#helmet)"/>
+</svg>

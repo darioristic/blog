@@ -18,15 +18,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Dario Ristic's blog",
+  title: "Dario Ristić's blog",
   description:
-    "Dario Ristic is a technology executive and consultant specializing in DevSecOps, cloud infrastructure, platform engineering, and high-performing cross-functional teams.",
+    "Dario Ristić is a technology executive and consultant specializing in DevSecOps, cloud infrastructure, platform engineering, and high-performing cross-functional teams.",
   openGraph: {
-    title: "Dario Ristic's blog",
+    title: "Dario Ristić's blog",
     description:
-      "Dario Ristic is a technology executive and consultant specializing in DevSecOps, cloud infrastructure, platform engineering, and high-performing cross-functional teams.",
+      "Dario Ristić is a technology executive and consultant specializing in DevSecOps, cloud infrastructure, platform engineering, and high-performing cross-functional teams.",
     url: "https://darioristic.com",
-    siteName: "Dario Ristic's blog",
+    siteName: "Dario Ristić's blog",
     images: ["/opengraph-image"],
   },
   twitter: {
